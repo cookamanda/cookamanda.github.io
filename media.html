@@ -10,12 +10,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             background-color: #f4f4f4;
         }
         nav {
             background-color: #333;
             padding: 1em;
+            text-align: center;
         }
         nav a {
             color: white;
@@ -30,6 +30,29 @@
             background: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: left;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery iframe {
+            width: 300px;
+            height: 170px;
+            border: none;
         }
     </style>
 </head>
@@ -38,12 +61,41 @@
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
         <a href="media.html">Media</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
     </nav>
     
     <section class="container">
-        <h2>Media</h2>
-        <p>Showcase media mentions, videos, or other press here.</p>
+        <h3>Articles about me and my work:</h3>
+        <ul>
+            <li><a href="https://www.nature.com/articles/s41550-024-02430-5"> "The X-ray mysteries of neutron stars and white dwarfs" - Nature Astronomy, Nanda Rea and Norbert Schartel (November 28th, 2024)</a></li>
+            <li><a href="https://heasarc.gsfc.nasa.gov/docs/nicer/science_nuggets/20241024.html"> "Do X-rays accompany fast radio bursts?" - NICER / ISS Science Nugget (October 24th, 2024)</a></li>
+            <li><a href="https://skyandtelescope.org/astronomy-news/mystery-bursts-give-astronomers-a-view-into-galaxy-halos/"> "Mystery Bursts Give Astronomers a View into Galaxy Halos" - Sky and Telescope, Govert Schilling (April 12th, 2023)</a></li>
+        </ul>
+        <h3>Recordings of (Academic) Talks:</h3>
+        <ul>
+            <li><a href="https://youtu.be/b7VhiR48ri8?si=Hn-twY_OwVaaED3s"> "Multiphase Madness" - Harvard Center for Astrophysics (August 2024)</a></li>
+            <li><a href="http://www.birs.ca/events/2023/5-day-workshops/23w5094/videos/watch/202310310922-Cook.html"> "Astrostatistics in Canada and Beyond" - Banff International Research Station (October 2023)</a></li>
+        </ul>
+        <h3>Public Outreach Interviews/Activities:</h3>
+        <ul>
+            <li><a href="https://youtu.be/iQl2eJ6tMIU?t=3029"> "Telescopes" - SciShow Tangents Podcast (November 28th, 2023)</a></li>
+            <li><a href="https://www.youtube.com/watch?v=bj-Xvh00c0Y"> "What is our Cosmic Address?" - Dunlap Institute, Cosmos on your Couch series (April 12th, 2023)</a></li>
+        </ul>
+        <h3>Links to my affiliations:</h3>
+        <ul>
+            <li><a href="https://astrostatuoft.com/"> University of Toronto's Astrostatistics Research Group (ART)</a></li>
+            <li><a href="https://www.chime-frb.ca/"> CHIME/FRB</a></li>
+            <li><a href="https://www.dunlap.utoronto.ca/"> Dunlap Institute</a></li>
+            <li><a href="https://www.astro.utoronto.ca/"> David A. Dunlap Department of Astronomy and Astrophysics</a></li>
+            <li><a href="https://canssi.ca/"> Canadian Statistical Science Institute</a></li>
+        </ul>
+        <div class="gallery">
+            <iframe src="https://www.youtube.com/embed/b7VhiR48ri8"></iframe>
+            <iframe src="https://www.youtube.com/embed/sjQTP0Q9NFg"></iframe>
+            <iframe src="https://www.youtube.com/embed/qko2RjQNTLk"></iframe>
+            <iframe src="https://www.youtube.com/embed/n3o__gWaiQU"></iframe>
+        </div>
     </section>
 </body>
 </html>
-

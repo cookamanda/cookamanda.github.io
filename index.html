@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Home</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             background-color: #f4f4f4;
         }
         nav {
             background-color: #333;
             padding: 1em;
+            text-align: center;
         }
         nav a {
             color: white;
@@ -31,6 +31,36 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+        .intro-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .intro-text {
+            width: 48%;
+        }
+        .slideshow-container {
+            width: 48%;
+            position: relative;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .fade {
+            animation: fadeEffect 1.5s;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0.4;} 
+            to {opacity: 1;}
+        }
+        @media screen and (max-width: 768px) {
+            .intro-text, .slideshow-container {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -38,12 +68,42 @@
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
         <a href="media.html">Media</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
     </nav>
     
     <section class="container">
-        <h1>Welcome to My Website</h1>
-        <p>This is the landing page where you introduce yourself or your work.</p>
+        <h1>Amanda M. Cook</h1>
+        <div class="intro-container">
+            <div class="intro-text">
+                <p><p> I am a postdoctoral fellow at McGill University and a member of the CHIME/FRB Collaboration.
+My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto. </p></p>
+            </div>
+            <div class="slideshow-container">
+                 <img class="slides fade" src="images/square.png" style="width:100%">
+                <img class="slides fade" src="images/IMG_0320.JPG" style="width:100%">
+                <img class="slides fade" src="images/IMG_2357 (1).png" style="width:100%">
+                <img class="slides fade" src="images/X63d6Ea.jpeg" style="width:100%">
+                <img class="slides fade" src="images/usJ4gRg.jpeg" style="width:100%">
+            </div>
+        </div>
     </section>
+    
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 20000); // Change image every 3 seconds
+        }
+    </script>
 </body>
 </html>
 
