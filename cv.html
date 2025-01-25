@@ -10,34 +10,60 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
         }
         nav {
-            background-color: #333;
-            padding: 1em;
-            text-align: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
         }
         nav a {
             color: white;
-            margin: 0 15px;
+            text-transform: uppercase;
             text-decoration: none;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
         .container {
             padding: 40px;
             max-width: 800px;
-            margin: auto;
-            background: white;
+            margin: 20px auto;
+            background: rgba(60, 60, 60, 0.85);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+        }
+        .container2 {
+            padding: 40px;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 8px;
+        }
+        .cv-content {
             text-align: center;
         }
         .cv-link {
             font-size: 20px;
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 4px;
             padding: 10px 20px;
-            background-color: #0073e6;
+            background-color: #777;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -51,7 +77,9 @@
         }
         .bio-images {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
             margin-top: 20px;
         }
         .bio-image-container {
@@ -64,12 +92,25 @@
         }
         .bio-caption {
             font-size: 14px;
-            color: #555;
-            margin-top: 5px;
+            color: #ddd;
+            margin-top: 10px;
+        }
+        .image-credits {
+            position: relative;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <div class="title">Amanda M. Cook</div>
     <nav>
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
@@ -77,16 +118,21 @@
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <section class="container">
-        <h2>Curriculum Vitae</h2>
+       
+    <section class="container2">
+<section class="subtitle ">
+Curriculum Vitae
+</section>
         <p>You can view or download my CV by clicking:</p>
         <a class="cv-link" href="AmandaMCook_CV_20250125.pdf" target="_blank">View CV (PDF)</a>
     </section>
-    
     <section class="container bio-section">
- <h2>Education/Bio</h2>
+<p class="bio-section">
+<section class="subtitle ">
+Education/Bio
+</section>
         <h4>Doctoral</h4>
-        <p>I received my Ph.D. in Astronomy and Astrophysics from the David A. Dunlap Department of Astronomy and Astrophysics at the University of Toronto in January of 2025. My thesis was entitled "Fast Radio Burst statistics in time and space: FRB repetition patterns and the Milky Way’s plasma probed by CHIME/FRB" and it was supervised by Prof. Gwen Eadie, Prof. Bryan Gaensler, and Prof. Paul Scholz. </p>
+        I received my Ph.D. in Astronomy and Astrophysics from the David A. Dunlap Department of Astronomy and Astrophysics at the University of Toronto in January of 2025. My thesis was entitled "Fast Radio Burst statistics in time and space: FRB repetition patterns and the Milky Way’s plasma probed by CHIME/FRB" and it was supervised by Prof. Gwen Eadie, Prof. Bryan Gaensler, and Prof. Paul Scholz. </p>
 
 <p> I was a member of the CHIME/FRB collaboration throughout my Ph.D., and was one of two trainees funded by a Canadian Statistical Sciences Institute Collaborative Research Grant (CANSSI CRT) which was awarded to Gwen, Bryan, Prof. Derek Bingham, and Prof. David Stenning to work on novel statistical problems posed by CHIME/FRB's unique design. </p>
 
@@ -114,9 +160,7 @@
                 <div class="bio-caption">Vicky Kaspi's group in 2024, where I finished off my Ph.D. with a short stint as a visiting researcher at McGill University</div>
             </div>
         </div>
-    </section>
-    
-    <section class="container bio-section">
+
         <h4>Undergraduate</h4>
         <p>I was an undergraduate student at McGill University from 2015-2019, where I was enrolled in the Joint Honours Mathematics and Physics program. In the summer of 2017, I  worked with Prof. Ken Ragan (McGill) on my first ever research project which was a study of a crab-like young pulsar using Fermi-LAT data. This work ended up in an undergraduate research journal. </p>
 
@@ -141,6 +185,8 @@
             </div>
         </div>
     </section>
+ <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>    
+
 </body>
 </html>
 

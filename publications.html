@@ -1,4 +1,3 @@
-
 <!-- publications.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,41 +10,69 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
+            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
         nav {
-            background-color: #333;
-            padding: 1em;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
         }
         nav a {
             color: white;
-            margin: 0 15px;
+            text-transform: uppercase;
             text-decoration: none;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
         .container {
             padding: 40px;
             max-width: 800px;
-            margin: auto;
-            background: white;
+            margin: 80px auto;
+            background: rgba(60, 60, 60, 0.85);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: left;
         }
-        ol {
+        .publications-list {
+            list-style-type: decimal;
             padding-left: 20px;
         }
-        li {
-            margin-bottom: 10px;
+        .publications-list li {
+            margin-bottom: 15px;
         }
-        a {
+        .publications-list a {
+            color: white !important;
             text-decoration: none;
-            color: black;
+        }
+        .publications-list a:hover {
+            text-decoration: underline;
+        }
+        .image-credits {
+            position: relative;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
+    <div class="title">Amanda M. Cook</div>
     <nav>
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
@@ -55,7 +82,7 @@
     </nav>
     
     <section class="container">
-        <h2>Publications</h2>
+        <h1>Publications</h1>
 The most up-to-date list of my publications can be found with ORCID:
  <a
     id="cy-effective-orcid-url"
@@ -73,7 +100,7 @@ The most up-to-date list of my publications can be found with ORCID:
 <br>
 (Click a paper below to be sent to the corresponding NASA/ADS page)
         <p><u> First Author: </u></p>
- <ol>
+ <ol class="publications-list">
   <li>
 <a href="https://arxiv.org/abs/2410.12146" 
    style="text-decoration: none"><b>
@@ -92,7 +119,7 @@ Cook, A. M.,</b> M. Bhardwaj, B. M. Gaensler, P. Scholz, G. M. Eadie, et al. (20
 
 </ol> 
   <p><u> N<sup>th</sup> Author: </u></p>
- <ol>
+ <ol class="publications-list">
   <li>
 <a href="https://ui.adsabs.harvard.edu/abs/2023arXiv230810930P/abstract" 
    style="text-decoration: none">
@@ -122,8 +149,9 @@ Pearlman, A. B., P. Scholz, S. Bethapudi, J. W. T. Hessels, V. M. Kaspi, et al. 
 </ol> 
 </ul> 
 <br> 
-
     </section>
+    
+ <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>    
 </body>
 </html>
 

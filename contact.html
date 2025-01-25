@@ -10,42 +10,71 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
         nav {
-            background-color: #333;
-            padding: 1em;
-            text-align: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
         }
         nav a {
             color: white;
-            margin: 0 15px;
+            text-transform: uppercase;
             text-decoration: none;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
         .container {
             padding: 40px;
             max-width: 600px;
             margin: auto;
-            background: white;
+            background: rgba(80, 80, 80, 0.8);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .contact-icon {
             font-size: 50px;
-            color: #0073e6;
+            color: white;
             margin-bottom: 10px;
         }
         .email {
             font-size: 20px;
-            color: #333;
+            color: white;
             text-decoration: none;
             font-weight: bold;
+        }
+        .image-credits {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
+    <div class="title">Amanda M. Cook</div>
     <nav>
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
@@ -54,11 +83,14 @@
         <a href="contact.html">Contact</a>
     </nav>
     
+    
     <section class="container">
         <div class="contact-icon">📧</div>
         <p>If you would like to get in touch, please send me an email.</p>
         <a class="email" href="mailto:amanda.cook@mcgill.ca">amanda.cook@mcgill.ca</a>
 <p>My office is number 207 and it is located in the Trottier Space Institute at 3550 rue University, Montreal QC H3A 2A7. </p>    
 </section>
+ <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>
 </body>
 </html>
+

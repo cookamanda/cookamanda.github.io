@@ -10,43 +10,68 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
         nav {
-            background-color: #333;
-            padding: 1em;
-            text-align: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
         }
         nav a {
             color: white;
-            margin: 0 15px;
+            text-transform: uppercase;
             text-decoration: none;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        .title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            margin-top: 80px;
         }
         .container {
-            padding: 40px;
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .intro-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            background: rgba(60, 60, 60, 0.85);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .text-container {
+            flex: 1;
+            text-align: left;
         }
         .intro-text {
-            width: 48%;
+            font-size: 16px;
         }
         .slideshow-container {
-            width: 48%;
+            flex: 1;
+            max-width: 300px;
             position: relative;
         }
         .slides {
             display: none;
             width: 100%;
+            max-height: 300px;
+            object-fit: cover;
             border-radius: 8px;
         }
         .fade {
@@ -56,14 +81,26 @@
             from {opacity: 0.4;} 
             to {opacity: 1;}
         }
+        .image-credits {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
         @media screen and (max-width: 768px) {
-            .intro-text, .slideshow-container {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .text-container, .slideshow-container {
                 width: 100%;
             }
         }
     </style>
 </head>
 <body>
+    <div class="title">Amanda M. Cook</div>
     <nav>
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
@@ -71,24 +108,20 @@
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
     </nav>
-    
     <section class="container">
-        <h1>Amanda M. Cook</h1>
-        <div class="intro-container">
-            <div class="intro-text">
-                <p><p> I am a postdoctoral fellow at McGill University and a member of the CHIME/FRB Collaboration.
-My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto. </p></p>
-            </div>
-            <div class="slideshow-container">
-                 <img class="slides fade" src="images/square.png" style="width:100%">
-                <img class="slides fade" src="images/IMG_0320.JPG" style="width:100%">
-                <img class="slides fade" src="images/IMG_2357 (1).png" style="width:100%">
-                <img class="slides fade" src="images/X63d6Ea.jpeg" style="width:100%">
-                <img class="slides fade" src="images/usJ4gRg.jpeg" style="width:100%">
-            </div>
+        <div class="text-container">
+            <p class="intro-text">I am a postdoctoral fellow at McGill University and a member of the CHIME/FRB Collaboration.
+My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto.</p>
+        </div>
+        <div class="slideshow-container">
+            <img class="slides fade" src="images/square.png">
+            <img class="slides fade" src="images/IMG_0320.JPG">
+            <img class="slides fade" src="images/X63d6Ea.jpeg">
+            <img class="slides fade" src="images/usJ4gRg.jpeg">
         </div>
     </section>
     
+ <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>    
     <script>
         let slideIndex = 0;
         showSlides();
@@ -101,9 +134,8 @@ My research interests include fast radio bursts, high-energy follow up, and circ
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 20000); // Change image every 3 seconds
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
         }
     </script>
 </body>
 </html>
-
