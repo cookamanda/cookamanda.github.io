@@ -1,106 +1,141 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-        }
+<meta name="google-site-verification" content="q9zxHcWP1R5j2I8AP--g92gu1tVd8CkAe90nmqxiGQk" /><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+        font-size: 20px;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        margin: 40px 0 20px;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        padding: 40px;
+        max-width: 900px;
+        margin: 0 auto 60px auto;
+        background: rgba(60, 60, 60, 0.85);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .text-container {
+        flex: 1;
+        text-align: left;
+    }
+
+    .intro-text {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .slideshow-container {
+        flex: 1;
+        max-width: 300px;
+        position: relative;
+    }
+
+    .slides {
+        display: none;
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .fade {
+        animation: fadeEffect 1.5s;
+    }
+
+    @keyframes fadeEffect {
+        from {opacity: 0.4;}
+        to {opacity: 1;}
+    }
+
+    /* 
+      Position the credits at the bottom-left of the screen.
+      It will remain fixed as the user scrolls.
+    */
+    .image-credits {
+        position: fixed;
+        bottom: 10px;
+        left: 20px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        z-index: 999; /* Keep it above other elements if needed */
+    }
+
+    @media screen and (max-width: 768px) {
         nav {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        nav a {
-            color: white;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        nav a:hover {
-            text-decoration: underline;
-            font-size: 20px;
-        }
+
         .title {
-            text-align: center;
-            font-size: 48px;
-            font-weight: bold;
-            margin-top: 80px;
+            font-size: 32px;
+            margin: 20px 0;
         }
+
         .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            padding: 40px;
-            max-width: 900px;
-            margin: auto;
-            background: rgba(60, 60, 60, 0.85);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            flex-direction: column;
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
         }
-        .text-container {
-            flex: 1;
-            text-align: left;
-        }
-        .intro-text {
-            font-size: 16px;
-        }
+
+        .text-container,
         .slideshow-container {
-            flex: 1;
-            max-width: 300px;
-            position: relative;
-        }
-        .slides {
-            display: none;
             width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
+            margin-bottom: 20px;
         }
-        .fade {
-            animation: fadeEffect 1.5s;
-        }
-        @keyframes fadeEffect {
-            from {opacity: 0.4;} 
-            to {opacity: 1;}
-        }
+
+        /* Optionally adjust .image-credits for mobile so it doesn't block text */
         .image-credits {
-            position: absolute;
+            font-size: 10px;
+            left: 10px;
             bottom: 10px;
-            left: 20px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
         }
-        @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .text-container, .slideshow-container {
-                width: 100%;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="title">Amanda M. Cook</div>
     <nav>
         <a href="index.html">Home</a>
         <a href="publications.html">Publications</a>
@@ -108,11 +143,21 @@
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
     </nav>
+
+    <div class="title">Amanda M. Cook</div>
+
     <section class="container">
         <div class="text-container">
-            <p class="intro-text">I am a postdoctoral fellow at McGill University and a member of the CHIME/FRB Collaboration.
-My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto.</p>
+            <p class="intro-text">
+                I am a Banting postdoctoral fellow at McGill University and a member of the CHIME/FRB Collaboration.
+                My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, 
+                particularly in the context of astrostatistics. I received my PhD in Astrophysics from the 
+                University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University 
+                in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and 
+                the University of Kyoto.
+            </p>
         </div>
+        
         <div class="slideshow-container">
             <img class="slides fade" src="images/square.png">
             <img class="slides fade" src="images/IMG_0320.JPG">
@@ -121,7 +166,9 @@ My research interests include fast radio bursts, high-energy follow up, and circ
         </div>
     </section>
     
- <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>    
+    <!-- The credits pinned bottom-left -->
+    <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>
+    
     <script>
         let slideIndex = 0;
         showSlides();
@@ -132,10 +179,11 @@ My research interests include fast radio bursts, high-energy follow up, and circ
                 slides[i].style.display = "none";
             }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 30000); // Change image every 3 seconds
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
         }
     </script>
 </body>
 </html>
+
