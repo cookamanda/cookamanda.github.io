@@ -13,7 +13,10 @@
         background-size: cover;
         color: white;
     }
-
+    p { 
+        text-indent: 30px;
+	font-size: 18px;
+    }
     nav {
         display: flex;
         justify-content: flex-end;
@@ -133,6 +136,7 @@
             bottom: 10px;
         }
     }
+
 </style>
 </head>
 <body>
@@ -149,9 +153,9 @@
     <section class="container">
         <div class="text-container">
             <p class="intro-text">
-                I am a Banting postdoctoral fellow at McGill University and the University of Amsterdam. I am also a member of the CHIME/FRB Collaboration.
-                My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, 
-                particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.  
+<p>
+               I am a Banting postdoctoral fellow at McGill University and the University of Amsterdam. I am also a member of the CHIME/FRB Collaboration. </p>
+                <p>My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.  
             </p>
         </div>
         
@@ -178,7 +182,7 @@
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 3000);
+            setTimeout(showSlides, 10000);
         }
     </script>
 </body>
