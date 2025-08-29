@@ -192,7 +192,7 @@
   title: "Scientists Have Identified the Origin of an Extraordinarily Powerful Outer-Space Radio Wave",
   url: "https://www.wired.com/story/scientists-identified-origin-extraordinarily-powerful-outer-space-radio-wave-frb-chime/",
   outlet: "WIRED",
-  author: "Jorge Garay (translated from WIRED en Español)",
+  author: "Jorge Garay",
   date: "2025-08-23",
   image: "https://media.wired.com/photos/68aa4183bf31773aefb5d8c5/3:2/w_2240,c_limit/2169230846",
   tags: ["RBFLOAT"]
@@ -230,7 +230,7 @@
   outlet: "McGill University Newsroom",
   author: "",
   date: "2025-08-21",
-  image: "https://www.mcgill.ca/newsroom/files/newsroom/styles/hd/public/channels/image/chime_array_artist_rendition.jpg?itok=xBTV9DJN&timestamp=1755788401",
+  image: "https://www.mcgill.ca/newsroom/files/newsroom/styles/hd/public/channels/image/chime_array_artist_rendition.jpg",
   tags: ["RBFLOAT"]
 },
 {
@@ -546,7 +546,7 @@
 
     let shown = 0;
     const total = sorted.length;
-    totalCountEl.textContent = total;
+if (totalCountEl) totalCountEl.textContent = total;
     visibleEl.textContent = total;
 
     function renderNext(){
