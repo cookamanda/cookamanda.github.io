@@ -1,173 +1,231 @@
-<!-- cv.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amanda M. Cook - CV</title>
-<link rel="icon" type="image/x-icon" href="images/icon.jpg">    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            text-align: center;
-        }
-        nav {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-        }
-        nav a {
-            color: white;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        nav a:hover {
-            text-decoration: underline;
-            font-size: 20px;
-        }
-        .title {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .container {
-            padding: 40px;
-            max-width: 800px;
-            margin: 20px auto;
-            background: rgba(60, 60, 60, 0.85);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .container2 {
-            padding: 40px;
-            max-width: 800px;
-            margin: 30px auto;
-            border-radius: 8px;
-        }
-        .cv-content {
-            text-align: center;
-        }
-        .cv-link {
-            font-size: 20px;
-            display: inline-block;
-            margin-top: 4px;
-            padding: 10px 20px;
-            background-color: #777;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .cv-link:hover {
-            background-color: #005bb5;
-        }
-        .bio-section {
-            text-align: left;
-            margin-top: 40px;
-        }
-        .bio-images {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        .bio-image-container {
-            width: 30%;
-            text-align: center;
-        }
-        .bio-images img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .bio-caption {
-            font-size: 14px;
-            color: #ddd;
-            margin-top: 10px;
-        }
-        .image-credits {
-            position: relative;
-            margin-top: 20px;
-            text-align: left;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-    </style>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f10;
+    color: #d0d0d0;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 40px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.circle-slideshow {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: 0 0 25px rgba(255,255,255,0.08);
+}
+
+.circle-slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* links */
+.sidebar a {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    padding: 10px 0;
+    text-align: right;
+    width: 100%;
+    position: relative;
+}
+
+.sidebar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.10);
+}
+
+.sidebar a:hover {
+    color: #fff;
+}
+
+/* ================= CONTENT ================= */
+.content {
+    margin-left: 280px;
+    padding: 50px 40px;
+    max-width: 900px;
+}
+
+/* section headers */
+h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 6px;
+}
+
+h4 {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* text */
+p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+/* CV button */
+.cv-link {
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+    background-color: #444;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.cv-link:hover {
+    background-color: #666;
+}
+
+/* images */
+.bio-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.bio-image-container {
+    width: 30%;
+    min-width: 200px;
+}
+
+.bio-images img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.bio-caption {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+}
+
+/* credits */
+.image-credits {
+    margin-top: 40px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+}
+</style>
 </head>
+
 <body>
-    <div class="title">Amanda M. Cook</div>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="publications.html">Publications</a>
-        <a href="media.html">Media</a>
-        <a href="cv.html">CV</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-       
-    <section class="container2">
-<section class="subtitle ">
-Curriculum Vitae
-</section>
-        <p>You can view or download my CV by clicking:</p>
-        <a class="cv-link" href="AmandaMCook_CV_20260512.pdf" target="_blank">View CV (PDF)</a>
-    </section>
-    <section class="container bio-section">
-<p class="bio-section">
-<section class="subtitle ">
-Education/Bio
-</section>
-<h4>Short Bio</h4>
- I am a Banting postdoctoral fellow at the Trottier Space Institute & Physics Department at McGill University and hold a guest affiliation at the University of Amsterdam's Anton Pannekoek Institute for Astronomy (UvA API). I am also a foundational member of the CHIME/FRB Collaboration. My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.  I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto.
 
-        <h4>Doctoral</h4>
-        I received my Ph.D. in Astronomy and Astrophysics from the David A. Dunlap Department of Astronomy and Astrophysics at the University of Toronto in January of 2025. My thesis was entitled "Fast Radio Burst statistics in time and space: FRB repetition patterns and the Milky Way’s plasma probed by CHIME/FRB" and it was supervised by Prof. Gwen Eadie, Prof. Bryan Gaensler, and Prof. Paul Scholz. It can be found here <a href="https://utoronto.scholaris.ca/items/5c789b35-f0e1-4a3a-a11b-2987655435f9">
-    here.
-</a></p>
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-<p> I was a member of the CHIME/FRB collaboration throughout my Ph.D., and was one of two trainees funded by a Canadian Statistical Sciences Institute Collaborative Research Grant (CANSSI CRT) which was awarded to Gwen, Bryan, Prof. Derek Bingham, and Prof. David Stenning to work on novel statistical problems posed by CHIME/FRB's unique design. </p>
+    <div class="circle-slideshow">
+        <img class="slide" src="images/PXL_20250506_142117163.PORTRAIT.jpeg">
+        <img class="slide" src="images/260507-173230-5588.jpg">
+        <img class="slide" src="images/IMG_2805.jpg">
+        <img class="slide" src="images/square.png">
+        <img class="slide" src="images/IMG_0320.JPG">
+    </div>
 
-        <div class="bio-images">
-            <div class="bio-image-container">
-                <img src="images/IMG_7276.JPG" alt="images/IMG_7276.JPG">
-                <div class="bio-caption">All of the CHIME/FRB members in Bryan Gaensler's group in Busan, Korea for FRB 2022</div>
-            </div>
-            <div class="bio-image-container">
-                <img src="images/IMG_5804.jpeg" alt="Bio Image 2">
-                <div class="bio-caption">A shot of the CHIME/FRB Collaboration at the 2023 Face-to-Face</div>
-            </div>
-            <div class="bio-image-container">
-                <img src="images/IMG_0391.JPG" alt="Bio Image 3">
-                <div class="bio-caption">Random picture of Ziggy, Paul and I coding in the long-wavelength lab at UofT.</div>
-            </div>
+    <a href="index.html">Publications</a>
+    <a href="media.html">Media</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
 </div>
-        <div class="bio-images">
-            <div class="bio-image-container">
-                <img src="images/groupphoto.jpg" alt="Bio Image 4">
-                <div class="bio-caption">Group photo at the Astrostatistics workshop at the Banff International Research Station in 2023</div>
-            </div>
-            <div class="bio-image-container">
-                <img src="images/PXL_20241213_165407028.jpg" alt="Bio Image 5">
-                <div class="bio-caption">Vicky Kaspi's group in 2024, where I finished off my Ph.D. with a short stint as a visiting researcher at McGill University</div>
-            </div>
-        </div>
 
-        <h4>Undergraduate</h4>
-        <p>I was an undergraduate student at McGill University from 2015-2019, where I was enrolled in the Joint Honours Mathematics and Physics program. In the summer of 2017, I  worked with Prof. Ken Ragan (McGill) on my first ever research project which was a study of a crab-like young pulsar using Fermi-LAT data. This work ended up in an undergraduate research journal. </p>
+<!-- CONTENT -->
+<div class="content">
+<h3>Curriculum Vitae</h3>
+
+<div class="cv-frame">
+    <iframe 
+        src="AmandaMCook_CV_20260512.pdf#view=FitH"
+        width="100%" 
+        height="800px"
+        style="border: none; border-radius: 10px;">
+    </iframe>
+</div>
+
+<p class="cv-note">
+    If the PDF does not load, you can 
+    <a href="AmandaMCook_CV_20260512.pdf" target="_blank" style="color:#fff;">
+        open it in a new tab
+    </a>.
+</p>
+<h3>Education / Bio</h3>
+
+<h4>Short Bio</h4>
+<p>
+ I am a Banting postdoctoral fellow at the Trottier Space Institute & Physics Department at McGill University and hold a guest affiliation at the University of Amsterdam's Anton Pannekoek Institute for Astronomy (UvA API). I am also a foundational member of the CHIME/FRB Collaboration. My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.  I received my PhD in Astrophysics from the University of Toronto in 2025, and an honours BSc in mathematics and physics from McGill University in 2019. As an undergrad I held a variety of summer research positions including at NASA JPL and the University of Kyoto.
+</p>
+
+<h4>Doctoral</h4>
+<p>
+        I received my Ph.D. in Astronomy and Astrophysics from the David A. Dunlap Department of Astronomy and Astrophysics at the University of Toronto in January of 2025. My thesis was entitled "Fast Radio Burst statistics in time and space: FRB repetition patterns and the Milky Way’s plasma probed by CHIME/FRB" and it was supervised by Prof. Gwen Eadie, Prof. Bryan Gaensler, and Prof. Paul Scholz. It can be found
+<a href="https://utoronto.scholaris.ca/items/5c789b35-f0e1-4a3a-a11b-2987655435f9" style="color:#fff;">
+here
+</a>.
+</p>
+
+<p>
+I was a member of the CHIME/FRB collaboration throughout my Ph.D., and was one of two trainees funded by a Canadian Statistical Sciences Institute Collaborative Research Grant (CANSSI CRT) which was awarded to Gwen, Bryan, Prof. Derek Bingham, and Prof. David Stenning to work on novel statistical problems posed by CHIME/FRB's unique design.
+</p>
+
+<div class="bio-images">
+    <div class="bio-image-container">
+        <img src="images/IMG_7276.JPG">
+        <div class="bio-caption">CHIME/FRB group in Busan, Korea</div>
+    </div>
+    <div class="bio-image-container">
+        <img src="images/IMG_5804.jpeg">
+        <div class="bio-caption">CHIME/FRB collaboration meeting</div>
+    </div>
+    <div class="bio-image-container">
+        <img src="images/IMG_0391.JPG">
+        <div class="bio-caption">Coding in the lab at UofT</div>
+    </div>
+</div>
+
+<h4>Undergraduate</h4>
+<p>I was an undergraduate student at McGill University from 2015-2019, where I was enrolled in the Joint Honours Mathematics and Physics program. In the summer of 2017, I  worked with Prof. Ken Ragan (McGill) on my first ever research project which was a study of a crab-like young pulsar using Fermi-LAT data. This work ended up in an undergraduate research journal. </p>
 
 <p>The following summer, I worked as a Caltech/NASA JPL summer intern with Dr. Walid Majid and Ph.D. students Aaron Pearlman and Chris Bochenek. Originally the project was to search for FRBs in 1000 hours of data from the Deep Space Network's 60m radio telescopes. I started with a rough calculation however, and we discovered because of the very small field of view of the telescope, despite the huge amount of hours and sensitivity, we really didn't expect to find any FRBs in that dataset. A search confirmed this. I instead worked on a multi-wavelength (radio, X-ray) campaign to monitor the recently reactivated Galactic radio magnetar PSR J1622-4950. </p>
 
@@ -190,8 +248,33 @@ Education/Bio
             </div>
         </div>
     </section>
- <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>    
+<script>
+function toggleDetails(btn) {
+    const details = btn.closest(".pub-item").querySelector(".pub-details");
+    const isOpen = details.style.display === "block";
+
+    details.style.display = isOpen ? "none" : "block";
+    btn.classList.toggle("open", !isOpen);
+}
+
+/* FIXED SLIDESHOW */
+let index = 0;
+const slides = document.getElementsByClassName("slide");
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    index++;
+    if (index > slides.length) index = 1;
+
+    slides[index - 1].style.display = "block";
+    setTimeout(showSlides, 60000);
+}
+
+showSlides();
+</script>
 
 </body>
 </html>
-
