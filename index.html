@@ -1,195 +1,393 @@
 <!DOCTYPE html>
+<!-- ADS publication template:
+<li class="pub-item">
+  <div class="pub-header">
+    <a class="pub-title" href="%u" target="_blank">%T</a>
+    <div class="pub-citation">
+      %1A et al. (%Y)
+      <button class="toggle-btn" onclick="toggleDetails(this)">▾</button>
+    </div>
+  </div>
+  <div class="pub-details">
+    %A (%Y), %J, %V, %P
+  </div>
+</li>
+-->
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="q9zxHcWP1R5j2I8AP--g92gu1tVd8CkAe90nmqxiGQk" /><meta charset="UTF-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amanda M. Cook</title>
-<link rel="icon" type="image/x-icon" href="images/icon.jpg">
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: url('images/nasa_star_background.jpg') no-repeat center center fixed;
-        background-size: cover;
-        color: white;
-    }
-    p { 
-        text-indent: 30px;
-	font-size: 18px;
-    }
-    nav {
-        display: flex;
-        justify-content: flex-end;
-        gap: 15px;
-        padding: 10px 20px;
-        background: rgba(0, 0, 0, 0.5);
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f10;
+    color: #d0d0d0;
+}
 
-    nav a {
-        color: white;
-        text-transform: uppercase;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    }
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 40px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
-    nav a:hover {
-        text-decoration: underline;
-        font-size: 20px;
-    }
+.circle-slideshow {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: 0 0 25px rgba(255,255,255,0.08);
+}
 
-    .title {
-        text-align: center;
-        font-size: 48px;
-        font-weight: bold;
-        margin: 40px 0 20px;
-    }
+.circle-slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
 
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
-        padding: 40px;
-        max-width: 900px;
-        margin: 0 auto 60px auto;
-        background: rgba(60, 60, 60, 0.85);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
+/* =========================
+   SIDEBAR LINKS
+========================= */
+.sidebar a,
+.pub-main-link {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    padding: 10px 0;
+    text-align: right;
+    width: 100%;
+    position: relative;
+}
 
-    .text-container {
-        flex: 1;
-        text-align: left;
-    }
+.sidebar a::after,
+.pub-nav-wrap::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.10);
+}
 
-    .intro-text {
-        font-size: 16px;
-        line-height: 1.6;
-    }
+.sidebar a:last-of-type::after {
+    display: none;
+}
 
-    .slideshow-container {
-        flex: 1;
-        max-width: 300px;
-        position: relative;
-    }
+.sidebar a:hover,
+.pub-main-link:hover {
+    color: #ffffff;
+}
 
-    .slides {
-        display: none;
-        width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
+/* Publications submenu */
+.pub-nav-wrap {
+    width: 100%;
+    text-align: right;
+    position: relative;
+}
 
-    .fade {
-        animation: fadeEffect 1.5s;
-    }
+.pub-main-link {
+    cursor: pointer;
+}
 
-    @keyframes fadeEffect {
-        from {opacity: 0.4;}
-        to {opacity: 1;}
-    }
+.pub-subnav {
+    display: none;
+    flex-direction: column;
+    margin-top: 6px;
+    gap: 2px;
+}
 
-    /* 
-      Position the credits at the bottom-left of the screen.
-      It will remain fixed as the user scrolls.
-    */
-    .image-credits {
-        position: fixed;
-        bottom: 10px;
-        left: 20px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.7);
-        z-index: 999; /* Keep it above other elements if needed */
-    }
+.pub-nav-wrap:hover .pub-subnav {
+    display: flex;
+}
 
-    @media screen and (max-width: 768px) {
-        nav {
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.pub-subnav a {
+    font-size: 12px;
+    color: #9a9a9a;
+    padding: 2px 0;
+    text-transform: uppercase;
+}
 
-        .title {
-            font-size: 32px;
-            margin: 20px 0;
-        }
+.pub-subnav a:hover {
+    color: #fff;
+}
 
-        .container {
-            flex-direction: column;
-            text-align: center;
-            margin: 20px;
-            padding: 20px;
-        }
+/* =========================
+   MAIN
+========================= */
+main {
+    margin-left: 280px;
+    padding: 60px 40px;
+    max-width: 900px;
+}
 
-        .text-container,
-        .slideshow-container {
-            width: 100%;
-            margin-bottom: 20px;
-        }
+h1 { font-size: 48px; }
+h2 { margin-top: 80px; }
+h3 { margin-top: 50px; }
 
-        /* Optionally adjust .image-credits for mobile so it doesn't block text */
-        .image-credits {
-            font-size: 10px;
-            left: 10px;
-            bottom: 10px;
-        }
-    }
+/* =========================
+   PUBLICATIONS
+========================= */
+.pub-list {
+    padding-left: 0;
+}
 
+.pub-item {
+    margin-bottom: 22px;
+    padding-left: 14px;
+    border-left: 2px solid #2a2a2a;
+}
+
+/* header */
+.pub-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pub-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e6e6e6;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.pub-title:hover {
+    color: #ffffff;
+}
+
+/* citation line */
+.pub-citation {
+    font-size: 13px;
+    color: #9a9a9a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* arrow button */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #8a8a8a;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+}
+
+.toggle-btn.open {
+    transform: rotate(180deg);
+}
+
+/* details box */
+.pub-details {
+    display: none;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #b0b0b0;
+    line-height: 1.4;
+}
+
+/* ORCID */
+.orcid {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #a9a9a9;
+}
+
+.orcid a {
+    color: #cfcfcf;
+}
+h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 6px;
+}
 </style>
 </head>
+
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="publications.html">Publications</a>
-        <a href="media.html">Media</a>
-        <a href="cv.html">CV</a>
-        <a href="contact.html">Contact</a>
-    </nav>
 
-    <div class="title">Amanda M. Cook</div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <section class="container">
-        <div class="text-container">
-            <p class="intro-text">
-<p>
-               I am a Banting postdoctoral fellow at McGill University and the University of Amsterdam. I am also a member of the CHIME/FRB Collaboration. </p>
-                <p>My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.  
-            </p>
+    <div class="circle-slideshow">
+        <img class="slide" src="images/PXL_20250506_142117163.PORTRAIT.jpeg">
+        <img class="slide" src="images/260507-173230-5588.jpg">
+        <img class="slide" src="images/IMG_2805.jpg">
+        <img class="slide" src="images/square.png">
+        <img class="slide" src="images/IMG_0320.JPG">
+    </div>
+
+    <div class="pub-nav-wrap">
+        <div class="pub-main-link">Publications</div>
+        <div class="pub-subnav">
+            <a href="#first-authors">First / Corresponding</a>
+            <a href="#nth">Nth Author</a>
+            <a href="#nonref">Non-refereed</a>
         </div>
-        
-        <div class="slideshow-container">
-	    <img class="slides fade" src="images/PXL_20250506_142117163.PORTRAIT.jpeg">
-	    <img class="slides fade" src="images/260507-173230-5588.jpg">
-            <img class="slides fade" src="images/IMG_2805.jpg">
-            <img class="slides fade" src="images/square.png">
-            <img class="slides fade" src="images/IMG_0320.JPG">
-            <img class="slides fade" src="images/X63d6Ea.jpeg">
-            <img class="slides fade" src="images/usJ4gRg.jpeg">
+    </div>
 
-        </div>
-    </section>
-    
-    <!-- The credits pinned bottom-left -->
-    <div class="image-credits">Background image from NASA/JPL-Caltech/STScI/IRAM</div>
-    
-    <script>
-        let slideIndex = 0;
-        showSlides();
+    <a href="media.html">Media</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
 
-        function showSlides() {
-            let slides = document.getElementsByClassName("slides");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 10000);
-        }
-    </script>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+<section id="home">
+    <h1>Amanda M. Cook</h1><h3>Banting postdoctoral fellow at McGill University and the University of Amsterdam. CHIME/FRB Collaboration. </h3>
+
+<p> My research interests include fast radio bursts, high-energy follow up, and circumgalactic media, particularly in the context of astrostatistics. I also currently hold the record for most FRB sources discovered during a PhD.</p>
+</section>
+
+<h2>PUBLICATIONS</h2>
+
+<div class="orcid">
+  Full list available on
+  <a href="https://orcid.org/0000-0001-6422-8125" target="_blank">ORCID</a>
+</div>
+
+<!-- FIRST AUTHOR -->
+<h3 id="first-authors">First / Corresponding Author</h3>
+
+<ol class="pub-list">
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260508410C" target="_blank">Discovery of 30 Repeating Fast Radio Burst Sources and Uniform Population Statistics of 80 Repeating Sources from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Shin, K., Pleunis, Z., Fine, M., Jain, N., Bingham, D., Curtin, A. P., Eadie, G., Gaensler, B. M., Hessels, J. W. T., Leung, C., Main, R., Mulyk, N., Pandhi, A., Scholz, P., Siegel, S. R., Stenning, D. C., Abbott, T. C., Andersen, B. C., Bhardwaj, M., Cai, A., Chatterjee, S., Dong, F. A., Fonseca, E., Hewitt, D. M., Joseph, R. C., Kahinga, L., Lazda, M., Kaspi, V. M., Khan, A., Kharel, B., Mas-Ribas, L., Masui, K. W., McGregor, K., Michilli, D., Mckinven, R., Ng, M., Nimmo, K., Shivraj Patil, S., Pearlman, A. B., Sammons, M. W., Sand, K. R., Sedaei Oghani, A., Shah, V., Smith, K., Stairs, I., Zegmott, T. J. (2026), arXiv e-prints, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024arXiv241012146C" target="_blank">K-Contact Distance for Noisy Nonhomogeneous Spatial Point Data with application to Repeating Fast Radio Burst sources</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Li, D., Eadie, G. M., Stenning, D. C., Scholz, P., Bingham, D., Craiu, R., Gaensler, B. M., Masui, K. W., Pleunis, Z., Herrera-Martin, A., Joseph, R. C., Pandhi, A., Pearlman, A. B., Prochaska, J. X. (2026), Annals of Applied Statistics 20(2): 1586-1604 </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...989L..48C" target="_blank">FRB 20250316A: A Brilliant and Nearby One-off Fast Radio Burst Localized to 13 pc Precision</a> <div class="pub-citation"> CHIME/FRB Collaboration (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Abbott, T. C., Amouyal, D., Andersen, B. C., Andrew, S. E., Bandura, K., Bhardwaj, M., Bhopi, K., Bhusare, Y., Brar, C., Cai, A., Cassanelli, T., Chatterjee, S., Cliche, J.-F., Cook, A. M., Curtin, A. P., Davies-Velie, E., Dobbs, M., Dong, F. A., Dong, Y., Eadie, G., Eftekhari, T., Fong, W.-F., Fonseca, E., Gaensler, B. M., Gusinskaia, N., Hessels, J. W. T., Hewitt, D. M., Huang, J., Jain, N., Joseph, R. C., Kahinga, L., Kaspi, V. M., Khan, A. (Afrokk) ., Kharel, B., Lanman, A. E., L'Argent, M., Lazda, M., Leung, C., Main, R., Mas-Ribas, L., Masui, K. W., McGregor, K., McKinven, R., Mena-Parra, J., Michilli, D., Mulyk, N., Ng, M., Nimmo, K., Pandhi, A., Patil, S. S., Pearlman, A. B., Pen, U.-L., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Ransom, S. M., Sachdeva, G., Sammons, M. W., Sand, K. R., Scholz, P., Shah, V., Shin, K., Siegel, S. R., Simha, S., Smith, K., Stairs, I., Stenning, D. C., Wang, H., Boles, T., Cognard, I., Dijkema, T. J., Filippenko, A. V., Gawroński, M. P., Herrmann, W., Kilpatrick, C. D., Kirsten, F., Knabel, S., Ould-Boukattine, O. S., Paugnat, H., Puchalska, W., Sheu, W., Suresh, A., Tohuvavohu, A., Treu, T., Zheng, W. (2025), The Astrophysical Journal, 989, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..170C" target="_blank">Contemporaneous X-Ray Observations of 30 Bright Radio Bursts from the Prolific Fast Radio Burst Source FRB 20220912A</a> <div class="pub-citation"> Cook, A. M., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Scholz, P., Pearlman, A. B., Abbott, T. C., Cruces, M., Gaensler, B. M., Dong, F. A., Michilli, D., Eadie, G., Kaspi, V. M., Stairs, I., Tan, C. M., Bhardwaj, M., Cassanelli, T., Curtin, A. P., Ibik, A. L., Lazda, M., Masui, K. W., Pandhi, A., Rafiei-Ravandi, M., Sammons, M. W., Shin, K., Smith, K., Stenning, D. C. (2024), The Astrophysical Journal, 974, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...946...58C" target="_blank">An FRB Sent Me a DM: Constraining the Electron Column of the Milky Way Halo with Fast Radio Burst Dispersion Measures from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Bhardwaj, M., Gaensler, B. M., Scholz, P., Eadie, G. M., Hill, A. S., Kaspi, V. M., Masui, K. W., Curtin, A. P., Dong, F. A., Fonseca, E., Herrera-Martin, A., Kaczmarek, J., Lanman, A. E., Lazda, M., Leung, C., Meyers, B. W., Michilli, D., Pandhi, A., Pearlman, A. B., Pleunis, Z., Ransom, S., Rahman, M., Sand, K. R., Shin, K., Smith, K., Stairs, I., Stenning, D. C. (2023), The Astrophysical Journal, 946, </div> </li>
+</ol>
+
+<!-- NTH AUTHOR -->
+<h3 id="nth">Nth Author Publications</h3>
+
+<ol class="pub-list">
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260626334M" target="_blank">Debiasing the Observed Fast Radio Burst Population with the CHIME/FRB Selection Function</a> <div class="pub-citation"> McGregor, K., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> McGregor, K., Hessels, J. W. T., Kaspi, V. M., Shin, K., Dong, F. A., Jain, N., Main, R. A., Sammons, M. W., Woodland, M., Amouyal, D., Bingham, D., Brar, C., Cook, A. M., Craiu, R., Curtin, A. P., Eadie, G., Gaensler, B. M., Huang, J., Khan, A., Leung, C., Masui, K. W., Pandhi, A., Shivraj Patil, S., Pearlman, A. B., Sachin Pradeep E., T., Scholz, P., Siegel, S. R., Smith, K., Stenning, D. C. (2026), arXiv e-prints, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260518513O" target="_blank">A 4200-hour HyperFlash and ÉCLAT campaign on the hyperactive FRB 20240114A: constraining energetics with the most brilliant bursts</a> <div class="pub-citation"> Ould-Boukattine, O. S., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Ould-Boukattine, O. S., Cooper, A. J., Cook, A. M., Hessels, J. W. T., Hewitt, D. M., Huang, J., Cognard, I., Dijkema, T. J., Gawroński, M. P., Herrmann, W., Kirsten, F., Moroianu, A., Pleunis, Z., Puchalska, W., Ranguin, S., Snelders, M. P., Telkamp, T. (2026), arXiv e-prints, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> 
+<a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026ApJ..1000L..53P" target="_blank">A Steadily Declining Dispersion Measure for the Repeating Fast Radio Burst FRB 20220529A: Evidence for a Fast Radio Burst Engine Embedded in an Expanding Supernova Remnant</a> <div class="pub-citation"> Pandhi, A., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Pandhi, A., Nimmo, K., Andrew, S., Brar, C., Chatterjee, S., Cook, A. M., Curtin, A., Gaensler, B. M., Gawronski, M., Hessels, J., Kaspi, V. M., Khan, A., Kirsten, F., Lazda, M., Leung, C., Main, R., Masui, K. W., Mckinven, R., Michilli, D., Ng, M., Ould-Boukattine, O., Pearlman, A. B., Pleunis, Z., Pollak, A. W., Pradeep E. T., S., Puchalska, W., Sammons, M. W., Scholz, P., Shah, V., Shin, K., Siegel, S. R., Smith, K. (2026), The Astrophysical Journal, 1000, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260409098A" target="_blank">Radio Monitoring Campaign of Active Repeater FRB 20220912A with CHIME</a> <div class="pub-citation"> Abbott, T. C., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Abbott, T. C., Pearlman, A. B., Kaspi, V. M., Pandhi, A., Brar, C., Cassity, A., Cook, A. M., Curtin, A. P., Fonseca, E., Gaensler, B. M., Good, D. C., Hessels, J. W., Khan, A., Leung, C., Main, R. A., Mckinven, R., Meyers, B. W., Nimmo, K., Ng, M., Pleunis, Z., Scholz, P., Shah, V., Shin, K. (2026), arXiv e-prints, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026ApJS..283...34C" target="_blank">The Second CHIME/FRB Catalog of Fast Radio Bursts</a> <div class="pub-citation"> CHIME/FRB Collaboration (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details">  CHIME/FRB Collaboration, Abbott, T., Andersen, B. C., Andrew, S., Bandura, K., Bhardwaj, M., Bhusare, Y., Brar, C., Cassanelli, T., Chatterjee, S., Cliche, J.-F., Cook, A. M., Curtin, A., Dobbs, M., Dong, F. A., Eadie, G., Eftekhari, T., Fonseca, E., Gaensler, B. M., Good, D., Halpern, M., Hessels, J. W. T., Ibik, A., Jain, N., Joseph, R. C., Kader, Z., Kaspi, V. M., Khan, A., Kharel, B., Kumar, A., Landecker, T. L., Lang, D., Lanman, A. E., L'Argent, M., Lazda, M., Leung, C., Li, D. Z., Lintott, C. J., Main, R., Masui, K. W., Mate, S., McGregor, K., McKinven, R., Mena-Parra, J., Meyers, B. W., Michilli, D., Ng, C., Ng, M., Nimmo, K., Noble, G., Pandhi, A., Patil, S. S., Pearlman, A. B., Pen, U.-L., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Ransom, S., Renard, A., Sammons, M. W., Sand, K. R., Scholz, P., Shah, V., Shin, K., Siegel, S. R., Sirota, S., Smith, K., Stairs, I., Stenning, D. C., Tendulkar, S. P., Vanderlinde, K., Walmsley, M., Wang, H., Wulf, D. (2026), The Astrophysical Journal Supplement Series, 283, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026ApJ...998...97C" target="_blank">CHIME/FRB Discovery and Localization of the Swift-observed FRB 20241228A</a> <div class="pub-citation"> Curtin, A. P., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Curtin, A. P., Andrew, S., Simha, S., Cai, A., Nimmo, K., Chatterjee, S., Cook, A. M., Dong, F. A., Dong, Y., Eftekhari, T., Fong, W.-. fai ., Fonseca, E., Hessels, J. W. T., Joseph, R. C., Kaspi, V., Leung, C., Main, R., Masui, K. W., Mckinven, R., Michilli, D., Ng, M., Pandhi, A., Pearlman, A. B., Sammons, M. W., Sand, K. R., Scholz, P., Shah, V., Shin, K., Tohuvavohu, A. (2026), The Astrophysical Journal, 998, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260223749K" target="_blank">Constraining the mass of the M31 ionized baryon Halo using CHIME/FRB Catalog 2</a> <div class="pub-citation"> Kahinga, L. A., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Kahinga, L. A., Prochaska, J. X., Simha, S., Leung, C., Cook, A. C., Craiu, R. V., Eadie, G., Fonseca, E., Gaensler, B. M., Kaspi, V. M., Khan, A., Kharel, B., Lanman, A. E., Main, R. A., Mas-Ribas, L., Masui, K. W., Scholz, P., Pandhi, A., Shivraj Patil, S., Pearlman, A. B., Shin, K., Siegel, S. R., Smith, K., Woodland, M. (2026), arXiv e-prints, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026ApJ...997..334S" target="_blank">CHIME/FRB Discovery of the Extremely Active Fast Radio Burst Source FRB 20240114A</a> <div class="pub-citation"> Shin, K., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Shin, K., Curtin, A., Fine, M., Pandhi, A., Andrew, S., Bhardwaj, M., Chatterjee, S., Cook, A. M., Fonseca, E., Gaensler, B. M., Hessels, J., Jain, N., Kaspi, V. M., Kharel, B., Lanman, A. E., Lazda, M., Leung, C., Main, R., Masui, K. W., Michilli, D., Ng, M., Nimmo, K., Pearlman, A. B., Pen, U.-L., Pleunis, Z., Rafiei-Ravandi, M., Sammons, M., Sand, K. R., Scholz, P., Smith, K., Stairs, I. (2026), The Astrophysical Journal, 997, </div> </li>
+
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026ApJ...997L...5P" target="_blank">A Spatial Gap in the Sky Distribution of Fast Radio Burst Detections Coinciding with Galactic Plasma Overdensities</a> <div class="pub-citation"> Patil, S. S., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Patil, S. S., Main, R. A., Fonseca, E., McGregor, K., Gaensler, B. M., Bhardwaj, M., Brar, C., Cook, A. M., Curtin, A. P., Eadie, G., Joseph, R., Kahinga, L., Kaspi, V., Khan, A., Kharel, B., Lanman, A. E., Leung, C., Masui, K. W., Ng, M., Nimmo, K., Pandhi, A., Pearlman, A. B., Pleunis, Z., Sammons, M. W., Sand, K. R., Scholz, P., Shin, K., Siegel, S. R., Smith, K. (2026), The Astrophysical Journal, 997, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...993..208S" target="_blank">Investigating the Sightline of a Highly Scattered Fast Radio Burst through a Cosmic Sheet Structure in the Local Universe</a> <div class="pub-citation"> Shin, K., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Shin, K., Leung, C., Simha, S., Andersen, B. C., Fonseca, E., Nimmo, K., Bhardwaj, M., Brar, C., Chatterjee, S., Cook, A. M., Gaensler, B. M., Joseph, R. C., Jow, D., Kaczmarek, J., Kahinga, L., Kaspi, V. M., Kharel, B., Lanman, A. E., Lazda, M., Main, R. A., Mas-Ribas, L., Masui, K. W., Mena-Parra, J., Michilli, D., Pandhi, A., Patil, S. S., Pearlman, A. B., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Sammons, M. W., Sand, K. R., Smith, K., Stairs, I. (2025), The Astrophysical Journal, 993, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...991..199D" target="_blank">Searching for Historical Extragalactic Optical Transients Associated with Fast Radio Bursts</a> <div class="pub-citation"> Dong, Y., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Dong, Y., Kilpatrick, C. D., Fong, W., Curtin, A. P., Opoku, S., Andersen, B. C., Cook, A. M., Eftekhari, T., Fonseca, E., Gaensler, B. M., Joseph, R. C., Kaczmarek, J. F., Kahinga, L. A., Kaspi, V., Lanman, A. E., Lazda, M., Leung, C., Masui, K. W., Michilli, D., Nimmo, K., Pandhi, A., Pearlman, A. B., Sammons, M., Scholz, P., Shah, V., Shin, K., Smith, K. (2025), The Astrophysical Journal, 991, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...990L..49D" target="_blank">CHIME/Fast Radio Burst/Pulsar Discovery of a Nearby Long-period Radio Transient with a Timing Glitch</a> <div class="pub-citation"> Dong, F. A., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Dong, F. A., Clarke, T. E., Curtin, A., Kumar, A., Mckinven, R., Shin, K., Stairs, I., Brar, C., Burdge, K., Chatterjee, S., Cook, A. M., Fonseca, E., Gaensler, B. M., Hessels, J. W., Kaspi, V. M., Lazda, M., Main, R., Masui, K. W., McKee, J. W., Meyers, B. W., Pearlman, A. B., Ransom, S. M., Scholz, P., Smith, K. M., Tan, C. M. (2025), The Astrophysical Journal, 990, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...989L..49B" target="_blank">James Webb Space Telescope Observations of the Nearby and Precisely Localized FRB 20250316A: A Potential Near-IR Counterpart and Implications for the Progenitors of Fast Radio Bursts</a> <div class="pub-citation"> Blanchard, P. K., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Blanchard, P. K., Berger, E., Andrew, S. E., Suresh, A., Uno, K., Kilpatrick, C. D., Metzger, B. D., Kumar, H., Sridhar, N., Cook, A. M., Dong, Y., Eftekhari, T., Fong, W.-. fai ., Golay, W. W., Hiramatsu, D., Joseph, R. C., Kaspi, V. M., Lazda, M., Leung, C., Masui, K. W., Mena-Parra, J., Nimmo, K., Pearlman, A. B., Shah, V., Shin, K., Simha, S. (2025), The Astrophysical Journal, 989, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025Natur.637...43M" target="_blank">A pulsar-like polarization angle swing from a nearby fast radio burst</a> <div class="pub-citation"> Mckinven, R., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Mckinven, R., Bhardwaj, M., Eftekhari, T., Kilpatrick, C. D., Kirichenko, A., Pal, A., Cook, A. M., Gaensler, B. M., Giri, U., Kaspi, V. M., Michilli, D., Nimmo, K., Pearlman, A. B., Pleunis, Z., Sand, K. R., Stairs, I., Andersen, B. C., Andrew, S., Bandura, K., Brar, C., Cassanelli, T., Chatterjee, S., Curtin, A. P., Dong, F. A., Eadie, G., Fonseca, E., Ibik, A. L., Kaczmarek, J. F., Kharel, B., Lazda, M., Leung, C., Li, D., Main, R., Masui, K. W., Mena-Parra, J., Ng, C., Pandhi, A., Patil, S. S., Prochaska, J. X., Rafiei-Ravandi, M., Scholz, P., Shah, V., Shin, K., Smith, K. (2025), Nature, 637, 47 </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025AJ....169...39A" target="_blank">frb-voe: A Real-time Virtual Observatory Event Alert Service for Fast Radio Bursts</a> <div class="pub-citation"> Abbott, T. C., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Abbott, T. C., Zwaniga, A. V., Brar, C., Kaspi, V. M., Petroff, E., Bhardwaj, M., Boyle, P. J., Cook, A. M., Joseph, R. C., Masui, K. W., Pandhi, A., Pleunis, Z., Scholz, P., Shin, K., Tendulkar, S. (2025), The Astronomical Journal, 169, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025NatAs...9..111P" target="_blank">Multiwavelength constraints on the origin of a nearby repeating fast radio burst source in a globular cluster</a> <div class="pub-citation"> Pearlman, A. B., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Pearlman, A. B., Scholz, P., Bethapudi, S., Hessels, J. W. T., Kaspi, V. M., Kirsten, F., Nimmo, K., Spitler, L. G., Fonseca, E., Meyers, B. W., Stairs, I. H., Tan, C. M., Bhardwaj, M., Chatterjee, S., Cook, A. M., Curtin, A. P., Dong, F. A., Eftekhari, T., Gaensler, B. M., Güver, T., Kaczmarek, J., Leung, C., Masui, K. W., Michilli, D., Prince, T. A., Sand, K. R., Shin, K., Smith, K. M., Tendulkar, S. P. (2025), Nature Astronomy, 9, 127 </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...976..199I" target="_blank">A Search for Persistent Radio Sources toward Repeating Fast Radio Bursts Discovered by CHIME/FRB</a> <div class="pub-citation"> Ibik, A. L., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Ibik, A. L., Drout, M. R., Gaensler, B. M., Scholz, P., Sridhar, N., Margalit, B., Clarke, T. E., Law, C. J., Tendulkar, S. P., Michilli, D., Eftekhari, T., Bhardwaj, M., Burke-Spolaor, S., Chatterjee, S., Cook, A. M., Hessels, J. W. T., Kirsten, F., Joseph, R. C., Kaspi, V. M., Lazda, M., Masui, K. W., Nimmo, K., Pandhi, A., Pearlman, A. B., Pleunis, Z., Rafiei-Ravandi, M., Shin, K., Smith, K. M. (2024), The Astrophysical Journal, 976, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...975...75L" target="_blank">Do All Fast Radio Bursts Repeat? Constraints from CHIME/FRB Far Sidelobe FRBs</a> <div class="pub-citation"> Lin, H.-H., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Lin, H.-H., Scholz, P., Ng, C., Pen, U.-L., Bhardwaj, M., Chawla, P., Curtin, A. P., Li, D., Newburgh, L., Reda, A., Sand, K. R., Tendulkar, S. P., Andersen, B., Bandura, K., Brar, C., Cassanelli, T., Cook, A. M., Dobbs, M., Dong, F. A., Eadie, G., Fonseca, E., Gaensler, B. M., Giri, U., Herrera-Martin, A., Hill, A. S., Kaczmarek, J., Kania, J., Kaspi, V., Khairy, K., Lanman, A. E., Leung, C., Masui, K. W., Mena-Parra, J., Meyers, B. W., Michilli, D., Milutinovic, N., Ordog, A., Pearlman, A. B., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S., Sanghavi, P., Shin, K., Smith, K., Stairs, I., Stenning, D. C., Vanderlinde, K., Wulf, D. (2024), The Astrophysical Journal, 975, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...972..125C" target="_blank">Constraining Near-simultaneous Radio Emission from Short Gamma-Ray Bursts Using CHIME/FRB</a> <div class="pub-citation"> Curtin, A. P., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Curtin, A. P., Sirota, S., Kaspi, V. M., Tendulkar, S. P., Bhardwaj, M., Cook, A. M., Fong, W.-F., Gaensler, B. M., Main, R. A., Masui, K. W., Michilli, D., Pandhi, A., Pearlman, A. B., Scholz, P., Shin, K. (2024), The Astrophysical Journal, 972, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...971L..51B" target="_blank">Host Galaxies for Four Nearby CHIME/FRB Sources and the Local Universe FRB Host Galaxy Population</a> <div class="pub-citation"> Bhardwaj, M., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Bhardwaj, M., Michilli, D., Kirichenko, A. Y., Modilim, O., Shin, K., Kaspi, V. M., Andersen, B. C., Cassanelli, T., Brar, C., Chatterjee, S., Cook, A. M., Dong, F. A., Fonseca, E., Gaensler, B. M., Ibik, A. L., Kaczmarek, J. F., Lanman, A. E., Leung, C., Masui, K. W., Pandhi, A., Pearlman, A. B., Petroff, E., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Sand, K. R., Scholz, P., Smith, K. M. (2024), The Astrophysical Journal, 971, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...969..145C" target="_blank">Updating the First CHIME/FRB Catalog of Fast Radio Bursts with Baseband Data</a> <div class="pub-citation"> CHIME/FRB Collaboration, et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Amiri, M., Andersen, B. C., Andrew, S., Bandura, K., Bhardwaj, M., Boyle, P. J., Brar, C., Breitman, D., Cassanelli, T., Chawla, P., Cook, A. M., Curtin, A. P., Dobbs, M., Dong, F. A., Eadie, G., Fonseca, E., Gaensler, B. M., Giri, U., Herrera-Martin, A., Hopkins, H., Ibik, A. L., Joseph, R. C., Kaczmarek, J. F., Kader, Z., Kaspi, V. M., Lanman, A. E., Lazda, M., Leung, C., Liu, S., Masui, K. W., McKinven, R., Mena-Parra, J., Merryfield, M., Michilli, D., Ng, C., Nimmo, K., Noble, G., Pandhi, A., Patel, C., Pearlman, A. B., Pen, U.-L., Petroff, E., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S. M., Sand, K. R., Scholz, P., Shah, V., Shin, K., Shpunarska, Y., Siegel, S. R., Smith, K., Stairs, I., Stenning, D. C., Vanderlinde, K., Wang, H., White, H., Wulf, D. (2024), The Astrophysical Journal, 969, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...968...50P" target="_blank">Polarization Properties of 128 Nonrepeating Fast Radio Bursts from the First CHIME/FRB Baseband Catalog</a> <div class="pub-citation"> Pandhi, A., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Pandhi, A., Pleunis, Z., Mckinven, R., Gaensler, B. M., Su, J., Ng, C., Bhardwaj, M., Brar, C., Cassanelli, T., Cook, A., Curtin, A. P., Kaspi, V. M., Lazda, M., Leung, C., Li, D., Masui, K. W., Michilli, D., Nimmo, K., Pearlman, A. B., Petroff, E., Rafiei-Ravandi, M., Sand, K. R., Scholz, P., Shin, K., Smith, K., Stairs, I. (2024), The Astrophysical Journal, 968, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024AAS...24331907P" target="_blank">Deciphering the Origins of a Nearby Repeating Fast Radio Burst in a Globular Cluster</a> <div class="pub-citation"> Pearlman, A. B., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Pearlman, A. B., Scholz, P., Bethapudi, S., Hessels, J. W. T., Kaspi, V. M., Kirsten, F., Nimmo, K., Spitler, L. G., Fonseca, E., Meyers, B. W., Stairs, I., Tan, C. M., Bhardwaj, M., Chatterjee, S., Cook, A. M., Curtin, A. P., Dong, F. A., Eftekhari, T., Gaensler, B. M., Guver, T., Kaczmarek, J., Leung, C., Masui, K. W., Michilli, D., Prince, T. A., Sand, K. R., Shin, K., Smith, K. M., Tendulkar, S. P. (2024), American Astronomical Society Meeting Abstracts #243, 243, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024arXiv240209304M" target="_blank">A pulsar-like swing in the polarisation position angle of a nearby fast radio burst</a> <div class="pub-citation"> Mckinven, R., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Mckinven, R., Bhardwaj, M., Eftekhari, T., Kilpatrick, C. D., Kirichenko, A., Pal, A., Cook, A. M., Gaensler, B. M., Giri, U., Kaspi, V. M., Michilli, D., Nimmo, K., Pearlman, A. B., Pleunis, Z., Sand, K. R., Stairs, I., Andersen, B. C., Andrew, S., Bandura, K., Brar, C., Cassanelli, T., Chatterjee, S., Curtin, A. P., Dong, F. A., Eadie, G., Fonseca, E., Ibik, A. L., Kaczmarek, J. F., Kharel, B., Lazda, M., Leung, C., Li, D., Main, R., Masui, K. W., Mena-Parra, J., Ng, C., Pandhi, A., Shivraj Patil, S., Prochaska, J. X., Rafiei-Ravandi, M., Scholz, P., Shah, V., Shin, K., Smith, K. (2024), arXiv e-prints, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...961...99I" target="_blank">Proposed Host Galaxies of Repeating Fast Radio Burst Sources Detected by CHIME/FRB</a> <div class="pub-citation"> Ibik, A. L., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Ibik, A. L., Drout, M. R., Gaensler, B. M., Scholz, P., Michilli, D., Bhardwaj, M., Kaspi, V. M., Pleunis, Z., Cassanelli, T., Cook, A. M., Dong, F. A., Kaczmarek, J. F., Leung, C., Lu, K. J., Masui, K. W., Pearlman, A. B., Rafiei-Ravandi, M., Sand, K. R., Shin, K., Smith, K. M., Stairs, I. H. (2024), The Astrophysical Journal, 961, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...956...23S" target="_blank">A CHIME/FRB Study of Burst Rate and Morphological Evolution of the Periodically Repeating FRB 20180916B</a> <div class="pub-citation"> Sand, K. R., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Sand, K. R., Breitman, D., Michilli, D., Kaspi, V. M., Chawla, P., Fonseca, E., Mckinven, R., Nimmo, K., Pleunis, Z., Shin, K., Andersen, B. C., Bhardwaj, M., Boyle, P. J., Brar, C., Cassanelli, T., Cook, A. M., Curtin, A. P., Dong, F. A., Eadie, G. M., Gaensler, B. M., Kaczmarek, J., Lanman, A., Leung, C., Masui, K. W., Rahman, M., Pandhi, A., Pearlman, A. B., Petroff, E., Rafiei-Ravandi, M., Scholz, P., Shah, V., Smith, K., Stairs, I., Stenning, D. C. (2023), The Astrophysical Journal, 956, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.5132D" target="_blank">The second set of pulsar discoveries by CHIME/FRB/Pulsar: 14 rotating radio transients and 7 pulsars</a> <div class="pub-citation"> Dong, F. A., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Dong, F. A., Crowter, K., Meyers, B. W., Pleunis, Z., Stairs, I., Tan, C. M., Yu, T. T., Boyle, P. J., Cook, A. M., Fonseca, E., Gaensler, B. M., Good, D. C., Kaspi, V., McKee, J. W., Patel, C., Pearlman, A. B. (2023), Monthly Notices of the Royal Astronomical Society, 524, 5147 </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...954..154C" target="_blank">Limits on Fast Radio Burst-like Counterparts to Gamma-Ray Bursts Using CHIME/FRB</a> <div class="pub-citation"> Curtin, A. P., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Curtin, A. P., Tendulkar, S. P., Josephy, A., Chawla, P., Andersen, B., Kaspi, V. M., Bhardwaj, M., Cassanelli, T., Cook, A., Dong, F. A., Fonseca, E., Gaensler, B. M., Kaczmarek, J. F., Lanmnan, A. E., Leung, C., Pearlman, A. B., Petroff, E., Pleunis, Z., Rafiei-Ravandi, M., Ransom, S. M., Shin, K., Scholz, P., Smith, K., Stairs, I. (2023), The Astrophysical Journal, 954, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023arXiv230705262L" target="_blank">Constraints on the Intergalactic and Local Dispersion Measure of Fast Radio Bursts with the CHIME/FRB far side-lobe events</a> <div class="pub-citation"> Lin, H.-H., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Lin, H.-H., Scholz, P., Ng, C., Pen, U.-L., Li, D. Z., Newburgh, L., Reda, A., Andersen, B., Bandura, K., Bhardwaj, M., Brar, C., Cassanelli, T., Chawla, P., Cook, A. M., Curtin, A. P., Dobbs, M., Dong, F. A., Fonseca, E., Gaensler, B. M., Giri, U., Hill, A. S., Kaczmarek, J., Kania, J., Kaspi, V., Khairy, K., Leung, C., Masui, K. W., Mena-Parra, J., Meyers, B. W., Ordog, A., Pearlman, A. B., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S., Sand, K. R., Sanghavi, P., Shin, K., Smith, K., Stairs, I., Tendulkar, S. P., Vanderlinde, K., Wulf, D. (2023), arXiv e-prints, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...950..134M" target="_blank">Subarcminute Localization of 13 Repeating Fast Radio Bursts Detected by CHIME/FRB</a> <div class="pub-citation"> Michilli, D., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Michilli, D., Bhardwaj, M., Brar, C., Gaensler, B. M., Kaspi, V. M., Kirichenko, A., Masui, K. W., Mckinven, R., Ng, C., Patel, C., Sand, K. R., Scholz, P., Shin, K., Siegel, S. R., Stairs, I., Cassanelli, T., Cook, A. M., Dobbs, M., Dong, F. A., Fonseca, E., Ibik, A., Kaczmarek, J., Leung, C., Pearlman, A. B., Petroff, E., Pleunis, Z., Rafiei-Ravandi, M., Sanghavi, P., Shaw, J. R., Tendulkar, S. P. (2023), The Astrophysical Journal, 950, </div> </li>
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...947...83C" target="_blank">CHIME/FRB Discovery of 25 Repeating Fast Radio Burst Sources</a> <div class="pub-citation"> Chime/Frb Collaboration, et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Chime/Frb Collaboration, Andersen, B. C., Bandura, K., Bhardwaj, M., Boyle, P. J., Brar, C., Cassanelli, T., Chatterjee, S., Chawla, P., Cook, A. M., Curtin, A. P., Dobbs, M., Dong, F. A., Faber, J. T., Fandino, M., Fonseca, E., Gaensler, B. M., Giri, U., Herrera-Martin, A., Hill, A. S., Ibik, A., Josephy, A., Kaczmarek, J. F., Kader, Z., Kaspi, V., Landecker, T. L., Lanman, A. E., Lazda, M., Leung, C., Lin, H.-H., Masui, K. W., McKinven, R., Mena-Parra, J., Meyers, B. W., Michilli, D., Ng, C., Pandhi, A., Pearlman, A. B., Pen, U.-L., Petroff, E., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S. M., Renard, A., Sand, K. R., Sanghavi, P., Scholz, P., Shah, V., Shin, K., Siegel, S., Smith, K., Stairs, I., Su, J., Tendulkar, S. P., Vanderlinde, K., Wang, H., Wulf, D., Zwaniga, A. (2023), The Astrophysical Journal, 947, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJS..264...53C" target="_blank">Erratum: "The First CHIME/FRB Fast Radio Burst Catalog" (2021, ApJS, 257, 59)</a> <div class="pub-citation"> CHIME/FRB Collaboration, et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Amiri, M., Andersen, B. C., Bandura, K., Berger, S., Bhardwaj, M., Boyce, M. M., Boyle, P. J., Brar, C., Breitman, D., Cassanelli, T., Chawla, P., Chen, T., Cliche, J.-F., Cook, A., Cubranic, D., Curtin, A. P., Deng, M., Dobbs, M., Dong, F. (Adam) ., Eadie, G., Fandino, M., Fonseca, E., Gaensler, B. M., Giri, U., Good, D. C., Halpern, M., Hill, A. S., Hinshaw, G., Josephy, A., Kaczmarek, J. F., Kader, Z., Kania, J. W., Kaspi, V. M., Landecker, T. L., Lang, D., Leung, C., Li, D., Lin, H.-H., Masui, K. W., McKinven, R., Mena-Parra, J., Merryfield, M., Meyers, B. W., Michilli, D., Milutinovic, N., Mirhosseini, A., Münchmeyer, M., Naidu, A., Newburgh, L., Ng, C., Patel, C., Pen, U.-L., Petroff, E., Pinsonneault-Marotte, T., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S. M., Renard, A., Sanghavi, P., Scholz, P., Shaw, J. R., Shin, K., Siegel, S. R., Sikora, A. E., Singh, S., Smith, K. M., Stairs, I., Tan, C. M., Tendulkar, S. P., Vanderlinde, K., Wang, H., Wulf, D., Zwaniga, A. V. (2023), The Astrophysical Journal Supplement Series, 264, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2021ApJS..257...59C" target="_blank">The First CHIME/FRB Fast Radio Burst Catalog</a> <div class="pub-citation"> CHIME/FRB Collaboration, et al. (2021) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Amiri, M., Andersen, B. C., Bandura, K., Berger, S., Bhardwaj, M., Boyce, M. M., Boyle, P. J., Brar, C., Breitman, D., Cassanelli, T., Chawla, P., Chen, T., Cliche, J.-F., Cook, A., Cubranic, D., Curtin, A. P., Deng, M., Dobbs, M., Dong, F. A., Eadie, G., Fandino, M., Fonseca, E., Gaensler, B. M., Giri, U., Good, D. C., Halpern, M., Hill, A. S., Hinshaw, G., Josephy, A., Kaczmarek, J. F., Kader, Z., Kania, J. W., Kaspi, V. M., Landecker, T. L., Lang, D., Leung, C., Li, D., Lin, H.-H., Masui, K. W., McKinven, R., Mena-Parra, J., Merryfield, M., Meyers, B. W., Michilli, D., Milutinovic, N., Mirhosseini, A., Münchmeyer, M., Naidu, A., Newburgh, L., Ng, C., Patel, C., Pen, U.-L., Petroff, E., Pinsonneault-Marotte, T., Pleunis, Z., Rafiei-Ravandi, M., Rahman, M., Ransom, S. M., Renard, A., Sanghavi, P., Scholz, P., Shaw, J. R., Shin, K., Siegel, S. R., Sikora, A. E., Singh, S., Smith, K. M., Stairs, I., Tan, C. M., Tendulkar, S. P., Vanderlinde, K., Wang, H., Wulf, D., Zwaniga, A. V. (2021), The Astrophysical Journal Supplement Series, 257, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2021ApJ...910L..18B" target="_blank">A Nearby Repeating Fast Radio Burst in the Direction of M81</a> <div class="pub-citation"> Bhardwaj, M., et al. (2021) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Bhardwaj, M., Gaensler, B. M., Kaspi, V. M., Landecker, T. L., Mckinven, R., Michilli, D., Pleunis, Z., Tendulkar, S. P., Andersen, B. C., Boyle, P. J., Cassanelli, T., Chawla, P., Cook, A., Dobbs, M., Fonseca, E., Kaczmarek, J., Leung, C., Masui, K., Mnchmeyer, M., Ng, C., Rafiei-Ravandi, M., Scholz, P., Shin, K., Smith, K. M., Stairs, I. H., Zwaniga, A. V. (2021), The Astrophysical Journal, 910, </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2020Natur.587...54C" target="_blank">A bright millisecond-duration radio burst from a Galactic magnetar</a> <div class="pub-citation"> CHIME/FRB Collaboration, et al. (2020) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Andersen, B. C., Bandura, K. M., Bhardwaj, M., Bij, A., Boyce, M. M., Boyle, P. J., Brar, C., Cassanelli, T., Chawla, P., Chen, T., Cliche, J.-F., Cook, A., Cubranic, D., Curtin, A. P., Denman, N. T., Dobbs, M., Dong, F. Q., Fandino, M., Fonseca, E., Gaensler, B. M., Giri, U., Good, D. C., Halpern, M., Hill, A. S., Hinshaw, G. F., Höfer, C., Josephy, A., Kania, J. W., Kaspi, V. M., Landecker, T. L., Leung, C., Li, D. Z., Lin, H.-H., Masui, K. W., McKinven, R., Mena-Parra, J., Merryfield, M., Meyers, B. W., Michilli, D., Milutinovic, N., Mirhosseini, A., Münchmeyer, M., Naidu, A., Newburgh, L. B., Ng, C., Patel, C., Pen, U.-L., Pinsonneault-Marotte, T., Pleunis, Z., Quine, B. M., Rafiei-Ravandi, M., Rahman, M., Ransom, S. M., Renard, A., Sanghavi, P., Scholz, P., Shaw, J. R., Shin, K., Siegel, S. R., Singh, S., Smegal, R. J., Smith, K. M., Stairs, I. H., Tan, C. M., Tendulkar, S. P., Tretyakov, I., Vanderlinde, K., Wang, H., Wulf, D., Zwaniga, A. V. (2020), Nature, 587, 58 </div> </li>
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...901..165S" target="_blank">Simultaneous X-Ray and Radio Observations of the Repeating Fast Radio Burst FRB ∼ 180916.J0158+65</a> <div class="pub-citation"> Scholz, P., et al. (2020) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Scholz, P., Cook, A., Cruces, M., Hessels, J. W. T., Kaspi, V. M., Majid, W. A., Naidu, A., Pearlman, A. B., Spitler, L. G., Bandura, K. M., Bhardwaj, M., Cassanelli, T., Chawla, P., Gaensler, B. M., Good, D. C., Josephy, A., Karuppusamy, R., Keimpema, A., Kirichenko, A. Y., Kirsten, F., Kocz, J., Leung, C., Marcote, B., Masui, K., Mena-Parra, J., Merryfield, M., Michilli, D., Naudet, C. J., Nimmo, K., Pleunis, Z., Prince, T. A., Rafiei-Ravandi, M., Rahman, M., Shin, K., Smith, K. M., Stairs, I. H., Tendulkar, S. P., Vanderlinde, K. (2020), The Astrophysical Journal, 901, </div> </li>
+
+
+</ol>
+
+<!-- NONREF -->
+<h3 id="nonref">Non-refereed / Reports</h3>
+
+<ol class="pub-list">
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260114357C" target="_blank">One Attempt at Building an Inclusive & Accessible Hybrid Astronomy Conference: FRB 2025</a> <div class="pub-citation"> Curtin, A. P., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Curtin, A. P., Anna-Thomas, R., Cook, A. M., Cruz-Vinaccia, C., Hessels, J., Main, R., Pastor Marazuela, I., Rhodes, L., Shah, V. (2026), arXiv e-prints, </div> </li>
+
+<li class="pub-item">   <div class="pub-header">     <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025NatAs...9.1760C" target="_blank">Fast Radio Bursts 2025</a>     <div class="pub-citation">       Cook, Amanda M. Curtin, Alice P., and 1 colleagues et al. (2025)       <button class="toggle-btn" onclick="toggleDetails(this)">▾</button>     </div>   </div>   <div class="pub-details">     Cook, Amanda M. and Curtin, Alice P. (2025), Nature Astronomy, 9, 1761   </div> </li>
+
+
+<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ATel17021....1C" target="_blank">CHIME/FRB source FRB 20250206A detected less than 1 minute after LVK binary merger S250206dm, however the probability of spatial coincidence is order 0.1%</a> <div class="pub-citation"> Cook, A. M., et al. (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M. on behalf of the CHIME/FRB Collaboration (2025), The Astronomer's Telegram, 17021, </div> </li>
+</ol>
+
+</main>
+
+<script>
+function toggleDetails(btn) {
+    const details = btn.closest(".pub-item").querySelector(".pub-details");
+    const isOpen = details.style.display === "block";
+
+    details.style.display = isOpen ? "none" : "block";
+    btn.classList.toggle("open", !isOpen);
+}
+
+/* FIXED SLIDESHOW */
+let index = 0;
+const slides = document.getElementsByClassName("slide");
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    index++;
+    if (index > slides.length) index = 1;
+
+    slides[index - 1].style.display = "block";
+    setTimeout(showSlides, 60000);
+}
+
+showSlides();
+</script>
+
 </body>
 </html>
-
