@@ -149,11 +149,82 @@ p {
     font-size: 11px;
     color: rgba(255,255,255,0.4);
 }
+.menu-toggle{
+    display:none;
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:1001;
+    background:#1b1b1b;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    font-size:22px;
+    cursor:pointer;
+    border-radius:6px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .sidebar{
+        position:fixed;
+        left:-260px;
+        top:0;
+        width:240px;
+        height:100vh;
+        background:#111;
+        padding:30px 20px;
+        transition:left .3s ease;
+        z-index:1000;
+        align-items:flex-start;
+    }
+
+    .sidebar.open{
+        left:0;
+    }
+
+    .content{
+        margin:0 !important;
+        max-width:none;
+        width:auto;
+        padding:80px 20px 40px;
+        box-sizing:border-box;
+    }
+
+    /* sidebar links align left on mobile */
+    .sidebar a{
+        text-align:left;
+    }
+
+    /* optional: shrink sidebar image slightly */
+    .circle-slideshow{
+        width:120px;
+        height:120px;
+        margin-bottom:20px;
+    }
+
+    h3{
+        font-size:15px;
+    }
+
+    h4{
+        font-size:13px;
+    }
+
+    p{
+        font-size:14px;
+    }
+}
 </style>
 </head>
 
 <body>
-
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 <!-- SIDEBAR -->
 <div class="sidebar">
 
@@ -177,7 +248,7 @@ p {
 
 <div class="cv-frame">
     <iframe 
-        src="AmandaMCook_CV_20260629.pdf#view=FitH"
+        src="AmandaMCook_CV_20260512.pdf#view=FitH"
         width="100%" 
         height="800px"
         style="border: none; border-radius: 10px;">
@@ -186,7 +257,7 @@ p {
 
 <p class="cv-note">
     If the PDF does not load, you can 
-    <a href="AmandaMCook_CV_20260629.pdf" target="_blank" style="color:#fff;">
+    <a href="AmandaMCook_CV_20260512.pdf" target="_blank" style="color:#fff;">
         open it in a new tab
     </a>.
 </p>
@@ -274,6 +345,10 @@ function showSlides() {
 }
 
 showSlides();
+
+function toggleMenu() {
+    document.querySelector(".sidebar").classList.toggle("open");
+}
 </script>
 
 </body>
