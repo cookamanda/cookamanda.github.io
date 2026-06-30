@@ -22,6 +22,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    transition: left 0.3s ease;
+    z-index: 1000;
 }
 
 .circle-slideshow {
@@ -34,14 +36,19 @@ body {
     box-shadow: 0 0 25px rgba(255,255,255,0.08);
 }
 
+/* IMPORTANT: images should NOT all be display:none by default */
 .circle-slideshow img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
+.circle-slideshow img.active {
+    opacity: 1;
+}
 /* links */
 .sidebar a {
     text-decoration: none;
@@ -88,7 +95,7 @@ h3 {
     padding-bottom: 6px;
 }
 
-/* ================= CONTACT (CLEAN STYLE) ================= */
+/* contact */
 .contact p {
     font-size: 14px;
     line-height: 1.7;
@@ -109,16 +116,70 @@ h3 {
     border-bottom: 1px solid #fff;
 }
 
-.office {
-    margin-top: 18px;
-    font-size: 13px;
-    color: #bdbdbd;
-    line-height: 1.6;
+/* ================= MOBILE ================= */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
+    background: #1b1b1b;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        left: -260px;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #111;
+        padding: 30px 20px;
+        align-items: flex-start;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 80px 20px 40px;
+    }
+
+    .sidebar a {
+        text-align: left;
+    }
+
+    /* ✅ FIXED: slideshow logic */
+    .circle-slideshow {
+        display: block;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+
+    /* optional: center it nicely in menu */
+    .sidebar {
+        align-items: flex-start;
+    }
 }
 </style>
 </head>
 
 <body>
+
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
@@ -143,14 +204,12 @@ h3 {
     <h3>Contact</h3>
 
     <div class="contact">
-        <p>
-            If you would like to get in touch, please feel free to email me.
-        </p>
+        <p>If you would like to get in touch, please feel free to email me.</p>
 
         <a class="email" href="mailto:amanda.cook@mail.mcgill.ca">
             amanda.cook@mail.mcgill.ca
         </a>
-
+    </div>
 </div>
 
 <script>
@@ -160,17 +219,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let i = 0;
 
-    slides.forEach((s, idx) => {
-        s.style.display = idx === 0 ? "block" : "none";
-    });
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove("active"));
+        slides[index].classList.add("active");
+    }
+
+    showSlide(0);
 
     setInterval(() => {
-        slides[i].style.display = "none";
         i = (i + 1) % slides.length;
-        slides[i].style.display = "block";
+        showSlide(i);
     }, 3500);
 });
 </script>
-
+<script>
+function toggleMenu() {
+    document.querySelector(".sidebar").classList.toggle("open");
+}
+</script>
 </body>
 </html>
