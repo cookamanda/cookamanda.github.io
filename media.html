@@ -12,7 +12,80 @@ body {
     background: #0f0f10;
     color: #d0d0d0;
 }
+/* ================= ANIMATIONS ================= */
 
+.animation-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.animation-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.animation-card video {
+    width: 100%;
+    display: block;
+    background: #000;
+}
+
+.animation-content {
+    padding: 16px;
+}
+
+.animation-title {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    color: white;
+}
+
+.animation-description {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.animation-license {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+.animation-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.download-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.citation-box {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    font-size: 12px;
+    color: #bbb;
+    font-family: monospace;
+}
 /* ================= SIDEBAR ================= */
 .sidebar {
     position: fixed;
@@ -355,6 +428,7 @@ h3 {
         <div class="media-main-link">Media</div>
         <div class="media-subnav">
             <a href="#press">Press</a>
+	    <a href="#animations">Animations</a>
             <a href="#talks">Talks</a>
             <a href="#outreach">Outreach</a>
             <a href="#acks">Acknowledgements</a>
@@ -375,7 +449,62 @@ h3 {
 <h3 id="press">Press Articles</h3>
 <div class="articles-wrap" id="articles-wrap"></div>
 <button class="btn" id="load-more">Load more</button>
+<h3 id="animations">Animations</h3>
 
+<p style="font-size:13px;color:#aaa;line-height:1.6;">
+ These animations may be used in talks, lectures,
+presentations, educational materials, and outreach provided attribution is
+given.
+</p>
+
+<div class="animation-grid">
+
+    <div class="animation-card">
+
+<video autoplay muted loop playsinline controls>
+            <source src="images/animated_weatherreport.mp4" type="video/mp4">
+        </video>
+
+        <div class="animation-content">
+
+            <h4 class="animation-title">
+                Animated Repeater Weather Report
+            </h4>
+
+<p class="animation-description">
+Time of arrival versus source declination for repeating fast radio burst detections.
+Marker size is proportional to signal-to-noise ratio (S/N). The cumulative number
+of repeaters detected by CHIME/FRB is shown in the lower right.
+Data from
+<a href="https://ui.adsabs.harvard.edu/abs/2026arXiv260508410C/abstract">Cook et al. (2026)</a>.
+</p>
+
+<div class="animation-buttons">
+    <a class="download-btn"
+       href="animations/repeater_declination.mp4"
+       download>
+        Download MP4 (CC BY 4.0)
+    </a>
+</div>
+
+<div class="animation-license">
+<strong>Animation:</strong> © 2026 Amanda M. Cook.<br>
+Licensed under
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">
+CC BY 4.0
+</a>.<br>
+Please credit <strong>Amanda M. Cook</strong> and cite
+<a href="https://ui.adsabs.harvard.edu/abs/2026arXiv260508410C/abstract">Cook et al. (2026)</a> when reusing this animation.
+</div>
+        </div>
+
+    </div>
+
+</div>
+<button class="download-btn"
+        onclick="copyCitation(this)">
+    Copy Attribution
+</button>
 <!-- TALKS -->
 <h3 id="talks">Talks</h3>
 <ul class="media-list">
@@ -822,6 +951,21 @@ render();
 
 </script>
 <script>
+function copyCitation(btn) {
+
+    const text =
+`Animation by Amanda M. Cook
+https://amandacook.space
+Licensed under CC BY 4.0`;
+
+    navigator.clipboard.writeText(text);
+
+    const old = btn.innerText;
+    btn.innerText = "Copied!";
+    setTimeout(() => {
+        btn.innerText = old;
+    }, 1500);
+}
 function toggleDetails(btn) {
     const details = btn.closest(".pub-item").querySelector(".pub-details");
     const isOpen = details.style.display === "block";
