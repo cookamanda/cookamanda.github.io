@@ -321,6 +321,80 @@ h3 {
     border-bottom: 1px solid rgba(255,255,255,0.08);
     padding-bottom: 6px;
 }
+
+/* =========================
+   FEATURED (FIRST-AUTHOR) PAPERS
+========================= */
+.pub-item.featured {
+    background: #17171a;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 2px solid #5a5a5a;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+    margin-bottom: 26px;
+    transition: border-color 0.2s ease;
+}
+.pub-item.featured:hover {
+    border-left-color: #9a9a9a;
+}
+.pub-summary {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 14px;
+}
+.pub-summary p {
+    flex: 1;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #bdbdbd;
+}
+.pub-figure {
+    flex: 0 0 230px;
+    margin: 0;
+}
+.pub-figure img {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    cursor: zoom-in;
+}
+.pub-figure figcaption {
+    font-size: 11px;
+    color: #858585;
+    line-height: 1.4;
+    margin-top: 6px;
+}
+.pub-item.featured .pub-details {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 10px;
+}
+
+/* click-to-enlarge figure viewer */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 6px;
+}
+
+@media (max-width:768px){
+    .pub-summary { flex-direction: column; }
+    .pub-figure { flex: none; width: 100%; }
+}
 </style>
 </head>
 
@@ -377,14 +451,54 @@ h3 {
 
 <ol class="pub-list">
 
-<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260508410C" target="_blank">Discovery of 30 Repeating Fast Radio Burst Sources and Uniform Population Statistics of 80 Repeating Sources from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Shin, K., Pleunis, Z., Fine, M., Jain, N., Bingham, D., Curtin, A. P., Eadie, G., Gaensler, B. M., Hessels, J. W. T., Leung, C., Main, R., Mulyk, N., Pandhi, A., Scholz, P., Siegel, S. R., Stenning, D. C., Abbott, T. C., Andersen, B. C., Bhardwaj, M., Cai, A., Chatterjee, S., Dong, F. A., Fonseca, E., Hewitt, D. M., Joseph, R. C., Kahinga, L., Lazda, M., Kaspi, V. M., Khan, A., Kharel, B., Mas-Ribas, L., Masui, K. W., McGregor, K., Michilli, D., McKinven, R., Ng, M., Nimmo, K., Patil, S. S., Pearlman, A. B., Sammons, M. W., Sand, K. R., Sedaei Oghani, A., Shah, V., Smith, K., Stairs, I., Zegmott, T. J. (2026), arXiv:2605.08410  </div> </li>
+<li class="pub-item featured"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2026arXiv260508410C" target="_blank">Discovery of 30 Repeating Fast Radio Burst Sources and Uniform Population Statistics of 80 Repeating Sources from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-summary">
+    <!-- write-up: edit freely -->
+    <p>Most FRBs have only ever been seen once, but some repeat, and a central open question is whether these are really two different kinds of source. Here we present 30 new repeating sources from CHIME/FRB and study 80 repeaters selected in a uniform way. Population modelling shows the sample is equally well described if 50–100% of apparent one-offs actually repeat, so most FRBs can come from sources that survive their bursts and don't need a cataclysmic event. This paper also establishes a population of FRBs with years-long, monotonic changes in dispersion measure, consistent with sources embedded in young supernova remnants.</p>
+    <figure class="pub-figure">
+      <img src="images/papers/repeaters-2026.png" alt="Key figure" onclick="openLightbox(this.src)" onerror="this.closest('figure').remove()">
+      <figcaption>Figure caption goes here.</figcaption>
+    </figure>
+  </div>
+  <div class="pub-details"> Cook, A. M., Shin, K., Pleunis, Z., Fine, M., Jain, N., Bingham, D., Curtin, A. P., Eadie, G., Gaensler, B. M., Hessels, J. W. T., Leung, C., Main, R., Mulyk, N., Pandhi, A., Scholz, P., Siegel, S. R., Stenning, D. C., Abbott, T. C., Andersen, B. C., Bhardwaj, M., Cai, A., Chatterjee, S., Dong, F. A., Fonseca, E., Hewitt, D. M., Joseph, R. C., Kahinga, L., Lazda, M., Kaspi, V. M., Khan, A., Kharel, B., Mas-Ribas, L., Masui, K. W., McGregor, K., Michilli, D., McKinven, R., Ng, M., Nimmo, K., Patil, S. S., Pearlman, A. B., Sammons, M. W., Sand, K. R., Sedaei Oghani, A., Shah, V., Smith, K., Stairs, I., Zegmott, T. J. (2026), arXiv:2605.08410  </div> </li>
 
-<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024arXiv241012146C" target="_blank">K-Contact Distance for Noisy Nonhomogeneous Spatial Point Data with application to Repeating Fast Radio Burst sources</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Li, D., Eadie, G. M., Stenning, D. C., Scholz, P., Bingham, D., Craiu, R., Gaensler, B. M., Masui, K. W., Pleunis, Z., Herrera-Martin, A., Joseph, R. C., Pandhi, A., Pearlman, A. B., Prochaska, J. X. (2026), Annals of Applied Statistics 20(2): 1586-1604 </div> </li>
+<li class="pub-item featured"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024arXiv241012146C" target="_blank">K-Contact Distance for Noisy Nonhomogeneous Spatial Point Data with application to Repeating Fast Radio Burst sources</a> <div class="pub-citation"> Cook, A. M., et al. (2026) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-summary">
+    <!-- write-up: edit freely -->
+    <p>CHIME/FRB can only place a burst within an arcminute-scale patch of sky, and it doesn't watch every part of the sky equally. So two bursts that land near each other could come from one repeating source, or from two unrelated sources that happen to line up. This paper develops a way to tell these apart. We model CHIME/FRB's detection rate across the sky with a hierarchical Bayesian model that accounts for exposure, sensitivity and irregular localization uncertainties. We then calculate how likely it is to find k independent bursts this close together by chance: the k-contact distance. Applied to earlier repeater candidates, the method is considerably more sensitive, and it's the basis for the repeater catalog above.</p>
+    <figure class="pub-figure">
+      <img src="images/papers/k-contact.png" alt="Key figure" onclick="openLightbox(this.src)" onerror="this.closest('figure').remove()">
+      <figcaption>Chance-coincidence probability for CHIME/FRB repeater candidates: previous method (x) vs. mine (y). Candidates in the green region are only identified as repeaters by the new method.</figcaption>
+    </figure>
+  </div>
+  <div class="pub-details"> Cook, A. M., Li, D., Eadie, G. M., Stenning, D. C., Scholz, P., Bingham, D., Craiu, R., Gaensler, B. M., Masui, K. W., Pleunis, Z., Herrera-Martin, A., Joseph, R. C., Pandhi, A., Pearlman, A. B., Prochaska, J. X. (2026), Annals of Applied Statistics 20(2): 1586-1604 </div> </li>
 
-<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...989L..48C" target="_blank">FRB 20250316A: A Brilliant and Nearby One-off Fast Radio Burst Localized to 13 pc Precision</a> <div class="pub-citation"> CHIME/FRB Collaboration (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> CHIME/FRB Collaboration, Abbott, T. C., Amouyal, D., Andersen, B. C., Andrew, S. E., Bandura, K., Bhardwaj, M., Bhopi, K., Bhusare, Y., Brar, C., Cai, A., Cassanelli, T., Chatterjee, S., Cliche, J.-F., Cook, A. M., Curtin, A. P., Davies-Velie, E., Dobbs, M., Dong, F. A., Dong, Y., Eadie, G., Eftekhari, T., Fong, W.-F., Fonseca, E., Gaensler, B. M., Gusinskaia, N., Hessels, J. W. T., Hewitt, D. M., Huang, J., Jain, N., Joseph, R. C., Kahinga, L., Kaspi, V. M., Khan, A., Kharel, B., Lanman, A. E., L'Argent, M., Lazda, M., Leung, C., Main, R., Mas-Ribas, L., Masui, K. W., McGregor, K., McKinven, R., Mena-Parra, J., Michilli, D., Mulyk, N., Ng, M., Nimmo, K., Pandhi, A., Patil, S. S., Pearlman, A. B., Pen, U.-L., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Ransom, S. M., Sachdeva, G., Sammons, M. W., Sand, K. R., Scholz, P., Shah, V., Shin, K., Siegel, S. R., Simha, S., Smith, K., Stairs, I., Stenning, D. C., Wang, H., Boles, T., Cognard, I., Dijkema, T. J., Filippenko, A. V., Gawroński, M. P., Herrmann, W., Kilpatrick, C. D., Kirsten, F., Knabel, S., Ould-Boukattine, O. S., Paugnat, H., Puchalska, W., Sheu, W., Suresh, A., Tohuvavohu, A., Treu, T., Zheng, W. (2025), The Astrophysical Journal Letters, 989, L48  </div> </li>
-<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..170C" target="_blank">Contemporaneous X-Ray Observations of 30 Bright Radio Bursts from the Prolific Fast Radio Burst Source FRB 20220912A</a> <div class="pub-citation"> Cook, A. M., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Scholz, P., Pearlman, A. B., Abbott, T. C., Cruces, M., Gaensler, B. M., Dong, F. A., Michilli, D., Eadie, G., Kaspi, V. M., Stairs, I., Tan, C. M., Bhardwaj, M., Cassanelli, T., Curtin, A. P., Ibik, A. L., Lazda, M., Masui, K. W., Pandhi, A., Rafiei-Ravandi, M., Sammons, M. W., Shin, K., Smith, K., Stenning, D. C. (2024), The Astrophysical Journal, 974, 170  </div> </li>
+<li class="pub-item featured"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...989L..48C" target="_blank">FRB 20250316A: A Brilliant and Nearby One-off Fast Radio Burst Localized to 13 pc Precision</a> <div class="pub-citation"> CHIME/FRB Collaboration (2025) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-summary">
+    <!-- write-up: edit freely -->
+    <p>FRB 20250316A was an exceptionally bright burst from a nearby galaxy, and the first FRB localized with the full CHIME/FRB Outriggers array. Its position is known to within 13 parsecs, close enough to study the burst's immediate surroundings and not just its host galaxy. It sits near a region of young star formation, which fits the idea that FRBs come from young magnetars. Its energy also doesn't match the energy distributions of well-studied repeaters, which supports the idea that some FRBs may truly never repeat.</p>
+    <figure class="pub-figure">
+      <img src="images/papers/frb20250316a.png" alt="Key figure" onclick="openLightbox(this.src)" onerror="this.closest('figure').remove()">
+      <figcaption>Figure caption goes here.</figcaption>
+    </figure>
+  </div>
+  <div class="pub-details"> CHIME/FRB Collaboration, Abbott, T. C., Amouyal, D., Andersen, B. C., Andrew, S. E., Bandura, K., Bhardwaj, M., Bhopi, K., Bhusare, Y., Brar, C., Cai, A., Cassanelli, T., Chatterjee, S., Cliche, J.-F., Cook, A. M., Curtin, A. P., Davies-Velie, E., Dobbs, M., Dong, F. A., Dong, Y., Eadie, G., Eftekhari, T., Fong, W.-F., Fonseca, E., Gaensler, B. M., Gusinskaia, N., Hessels, J. W. T., Hewitt, D. M., Huang, J., Jain, N., Joseph, R. C., Kahinga, L., Kaspi, V. M., Khan, A., Kharel, B., Lanman, A. E., L'Argent, M., Lazda, M., Leung, C., Main, R., Mas-Ribas, L., Masui, K. W., McGregor, K., McKinven, R., Mena-Parra, J., Michilli, D., Mulyk, N., Ng, M., Nimmo, K., Pandhi, A., Patil, S. S., Pearlman, A. B., Pen, U.-L., Pleunis, Z., Prochaska, J. X., Rafiei-Ravandi, M., Ransom, S. M., Sachdeva, G., Sammons, M. W., Sand, K. R., Scholz, P., Shah, V., Shin, K., Siegel, S. R., Simha, S., Smith, K., Stairs, I., Stenning, D. C., Wang, H., Boles, T., Cognard, I., Dijkema, T. J., Filippenko, A. V., Gawroński, M. P., Herrmann, W., Kilpatrick, C. D., Kirsten, F., Knabel, S., Ould-Boukattine, O. S., Paugnat, H., Puchalska, W., Sheu, W., Suresh, A., Tohuvavohu, A., Treu, T., Zheng, W. (2025), The Astrophysical Journal Letters, 989, L48  </div> </li>
+<li class="pub-item featured"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..170C" target="_blank">Contemporaneous X-Ray Observations of 30 Bright Radio Bursts from the Prolific Fast Radio Burst Source FRB 20220912A</a> <div class="pub-citation"> Cook, A. M., et al. (2024) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-summary">
+    <!-- write-up: edit freely -->
+    <p>Theories for the currently unknown source(s) of FRBs often predict associated high-energy emission, and the properties of that emission given the proposed mechanism. A high-energy counterpart would strongly discriminate between competing source models. We observed the active, nearby repeater FRB 20220912A with XMM-Newton contemporaneously with 30 bright radio bursts, and detected no X-ray counterparts. I developed a hierarchical Bayesian methodology to estimate the radio-to-X-ray fluence ratio from a set of observations, combining information from multiple non-detections without assuming constant luminosities or background rates across them. The resulting limits are of the same order of magnitude as the X-ray and radio emission observed from a Galactic FRB analogue, the magnetar SGR 1935+2154.</p>
+    <figure class="pub-figure">
+      <img src="images/papers/frb20220912a-xray.png" alt="Key figure" onclick="openLightbox(this.src)" onerror="this.closest('figure').remove()">
+      <figcaption>Figure caption goes here.</figcaption>
+    </figure>
+  </div>
+  <div class="pub-details"> Cook, A. M., Scholz, P., Pearlman, A. B., Abbott, T. C., Cruces, M., Gaensler, B. M., Dong, F. A., Michilli, D., Eadie, G., Kaspi, V. M., Stairs, I., Tan, C. M., Bhardwaj, M., Cassanelli, T., Curtin, A. P., Ibik, A. L., Lazda, M., Masui, K. W., Pandhi, A., Rafiei-Ravandi, M., Sammons, M. W., Shin, K., Smith, K., Stenning, D. C. (2024), The Astrophysical Journal, 974, 170  </div> </li>
 
-<li class="pub-item"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...946...58C" target="_blank">An FRB Sent Me a DM: Constraining the Electron Column of the Milky Way Halo with Fast Radio Burst Dispersion Measures from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-details"> Cook, A. M., Bhardwaj, M., Gaensler, B. M., Scholz, P., Eadie, G. M., Hill, A. S., Kaspi, V. M., Masui, K. W., Curtin, A. P., Dong, F. A., Fonseca, E., Herrera-Martin, A., Kaczmarek, J., Lanman, A. E., Lazda, M., Leung, C., Meyers, B. W., Michilli, D., Pandhi, A., Pearlman, A. B., Pleunis, Z., Ransom, S., Rahman, M., Sand, K. R., Shin, K., Smith, K., Stairs, I., Stenning, D. C. (2023), The Astrophysical Journal, 946, 58  </div> </li>
+<li class="pub-item featured"> <div class="pub-header"> <a class="pub-title" href="https://ui.adsabs.harvard.edu/abs/2023ApJ...946...58C" target="_blank">An FRB Sent Me a DM: Constraining the Electron Column of the Milky Way Halo with Fast Radio Burst Dispersion Measures from CHIME/FRB</a> <div class="pub-citation"> Cook, A. M., et al. (2023) <button class="toggle-btn" onclick="toggleDetails(this)">▾</button> </div> </div> <div class="pub-summary">
+    <!-- write-up: edit freely -->
+    <p>The gas in the halo surrounding the Milky Way plays an important role in our Galaxy's evolution, yet much about it remains unknown, including its mass, dynamical state, and co-evolution with the Milky Way itself. To better understand both the gas and its role in Galactic evolution, I constrained the halo's electron column density using a novel probe: dispersion measures (DMs) from the largest sample of FRBs. Using multiple lines of sight, I derived a direction-dependent constraint on the halo rather than assuming spherical symmetry. These constraints discriminate between halo models, which I find largely overestimate the electron column. In particular, some models predict a larger halo DM contribution than our observations support unless feedback is strengthened within them. This suggests small-scale ejective events play a bigger role in the Milky Way halo's evolution than previously predicted.</p>
+    <figure class="pub-figure">
+      <img src="images/papers/mw-halo.jpg" alt="Key figure" onclick="openLightbox(this.src)" onerror="this.closest('figure').remove()">
+      <figcaption>DM vs. Galactic latitude for CHIME/FRB sources. The lowest-DM FRBs (triangles) set an upper limit on the Milky Way's contribution, above the pulsars (stars) that trace the disk alone.</figcaption>
+    </figure>
+  </div>
+  <div class="pub-details"> Cook, A. M., Bhardwaj, M., Gaensler, B. M., Scholz, P., Eadie, G. M., Hill, A. S., Kaspi, V. M., Masui, K. W., Curtin, A. P., Dong, F. A., Fonseca, E., Herrera-Martin, A., Kaczmarek, J., Lanman, A. E., Lazda, M., Leung, C., Meyers, B. W., Michilli, D., Pandhi, A., Pearlman, A. B., Pleunis, Z., Ransom, S., Rahman, M., Sand, K. R., Shin, K., Smith, K., Stairs, I., Stenning, D. C. (2023), The Astrophysical Journal, 946, 58  </div> </li>
 </ol>
 
 <!-- NTH AUTHOR -->
@@ -461,6 +575,9 @@ h3 {
 
 </main>
 
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightbox-img" alt=""></div>
+
+
 <script>
 function toggleDetails(btn) {
     const details = btn.closest(".pub-item").querySelector(".pub-details");
@@ -469,6 +586,21 @@ function toggleDetails(btn) {
     details.style.display = isOpen ? "none" : "block";
     btn.classList.toggle("open", !isOpen);
 }
+function openLightbox(src) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox").classList.add("open");
+}
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") document.getElementById("lightbox").classList.remove("open");
+});
+
+/* continue numbering across the publication lists */
+let pubNum = 1;
+document.querySelectorAll("ol.pub-list").forEach(ol => {
+    ol.start = pubNum;
+    pubNum += ol.querySelectorAll(":scope > li").length;
+});
+
 function toggleMenu() {
     document.querySelector(".sidebar").classList.toggle("open");
 }
